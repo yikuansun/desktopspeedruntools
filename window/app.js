@@ -1,8 +1,9 @@
 const { BrowserWindow } = require('electron').remote;
 const fs = require('fs');
 const ioHook = require('iohook');
+const os = require('os');
 
-keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/darwin.json", "utf-8"));
+keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
 ioHook.start();
 
