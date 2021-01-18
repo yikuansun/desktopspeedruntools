@@ -8,6 +8,7 @@ function createWindow () {
     frame: false,
     resizable: false,
     transparent: true,
+    alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
@@ -15,6 +16,7 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
+  mainWindow.setPosition(0, 0);
 }
 
 app.whenReady().then(() => {
