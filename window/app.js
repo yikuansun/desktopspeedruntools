@@ -1,12 +1,12 @@
 const { BrowserWindow } = require('electron').remote;
 const fs = require('fs');
-/*const ioHook = require('iohook');
+const ioHook = require('iohook');
 
 ioHook.on("keyup", event => {
     console.log(event);
 });
  
-ioHook.start();*/
+ioHook.start();
 
 document.getElementById("settingsbutton").addEventListener("click", function() {
     const remote = require('electron').remote;

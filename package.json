@@ -12,8 +12,7 @@
   },
   "iohook": {
     "targets": [
-      "node-59",
-      "electron-57"
+      "electron-85"
     ],
     "platforms": [
       "win32",
@@ -21,8 +20,7 @@
       "linux"
     ],
     "arches": [
-      "x64",
-      "ia32"
+      "x64"
     ]
-  }  
+  }
 }
