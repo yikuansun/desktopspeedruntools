@@ -80,7 +80,7 @@ ioHook.on("keydown", e => {
         splits.scrollTop = splits.scrollHeight;
     }
 
-    keymap["1234567890abcdefghijklmnopqrstuvwxyz".includes(e.key)?e.key.toUpperCase():e.code] = true;
+    keymap[keycodeNames[e.keycode]] = true;
     outstring = "Keys pressed: ";
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
@@ -91,7 +91,7 @@ ioHook.on("keydown", e => {
 });
 
 ioHook.on("keyup", e => {
-    keymap["1234567890abcdefghijklmnopqrstuvwxyz".includes(e.key)?e.key.toUpperCase():e.code] = false;
+    keymap[keycodeNames[e.keycode]] = false;
     outstring = "Keys pressed: ";
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
