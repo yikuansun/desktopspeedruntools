@@ -1,11 +1,14 @@
-body {
+#content {
     width: 250px;
     height: 400px;
     background-image: url(bg_translucent.png);
     background-size: cover;
-    margin: 0;
     display: flex;
     flex-flow: column;
+}
+
+body {
+    margin: 0;
 }
 
 #decobar {
