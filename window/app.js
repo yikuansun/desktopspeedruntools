@@ -1,7 +1,9 @@
 const { BrowserWindow } = require('electron').remote;
-// const fs = require('fs'); // already declared
+const fs = require('fs');
 const ioHook = require('iohook');
- 
+
+keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/darwin.json", "utf-8"));
+
 ioHook.start();
 
 document.getElementById("settingsbutton").addEventListener("click", function() {
