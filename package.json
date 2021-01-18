@@ -1,0 +1,13 @@
+{
+  "name": "speedruntools",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^11.1.1"
+  },
+  "dependencies": {
+    "iohook": "^0.7.2"
+  }
+}

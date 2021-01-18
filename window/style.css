@@ -1,0 +1,45 @@
+body {
+    width: 250px;
+    height: 400px;
+    background-image: url(bg_translucent.png);
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+}
+
+#decobar {
+    width: 100%;
+    height: 5px;
+    background-color: #002F63;
+}
+
+#time {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #2B6ABC;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 40px;
+}
+
+#splits {
+    flex: 1 1 auto;
+    overflow: scroll;
+}
+
+.splitText {
+    color: #0C53A6;
+    font-size: 24px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#keylog {
+    font-size: 12px;
+    padding: 5px;
+    color: grey;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
