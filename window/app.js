@@ -1,5 +1,5 @@
 const { BrowserWindow } = require('electron').remote;
-const fs = require('fs');
+// const fs = require('fs'); // already declared
 const ioHook = require('iohook');
  
 ioHook.start();
@@ -51,10 +51,13 @@ updateClock = function() {
 
 keymap = {};
 
+/*// key farming
+iohookkeycodes = [];
+jskeynames = [];*/
 
 ioHook.on("keydown", e => {
     keyname = keycodeNames[e.keycode];
-    console.log(keyname)
+    //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
         if (AltToStartClock) {
             clock = 0;
@@ -102,3 +105,15 @@ ioHook.on("keyup", e => {
     }
     keylog.innerText = outstring;
 });
+/*
+// key farming
+farm = {};
+document.addEventListener("keydown", function(er) {
+    jskeynames.push(er.key);
+    if (er.key == "ArrowRight") {
+        for (i = 0; i < iohookkeycodes.length; i++) {
+            farm[iohookkeycodes[i]] = jskeynames[i];
+        }
+        fs.writeFileSync(__dirname + "/darwin-keycodenames.json", JSON.stringify(farm));
+    }
+});*/
