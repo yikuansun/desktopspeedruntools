@@ -28,7 +28,7 @@ body {
 
 #splits {
     flex: 1 1 auto;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .splitText {
