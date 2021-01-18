@@ -53,7 +53,8 @@ keymap = {};
 
 
 ioHook.on("keydown", e => {
-    if (e.altKey) {
+    console.log(keycodeNames[e.keycode])
+    if (keycodeNames[e.keycode] == settings.startKey) {
         if (AltToStartClock) {
             clock = 0;
             startTime = now();
@@ -66,7 +67,7 @@ ioHook.on("keydown", e => {
             AltToStartClock = true;
         }
     }
-    else if (e.shiftKey) {
+    else if (keycodeNames[e.keycode] = settings.shiftKey) {
         splitText = document.createElement("div");
         splitText.innerHTML = time.innerText;
         splitText.style.color = scheme[3];
