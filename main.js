@@ -2,6 +2,24 @@ const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+function getAppDataPath() {
+  switch (process.platform) {
+    case "darwin": {
+      return path.join(process.env.HOME, "Library", "Application Support", "speedruntools");
+    }
+    case "win32": {
+      return path.join(process.env.APPDATA, "speedruntools");
+    }
+    case "linux": {
+      return path.join(process.env.HOME, ".speedruntools");
+    }
+    default: {
+      console.log("Unsupported platform!");
+      process.exit(1);
+    }
+  }
+}
+
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const mainWindow = new BrowserWindow({
@@ -18,7 +36,16 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
-  settingsdata = JSON.parse(fs.readFileSync(__dirname + "/window/settings.json", "utf-8"));
+  try {
+    settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+}
+catch(err) {
+    try {
+        fs.mkdirSync(getAppDataPath());
+    } catch(err2) { console.log("nothing"); }
+    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0"}');
+    settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+}
   if (settingsdata.topbottom == "top") {
     mainWindow.y = 0;
   }

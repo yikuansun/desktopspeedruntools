@@ -23,7 +23,16 @@ document.getElementById("settingsbutton").addEventListener("click", function() {
 });
 
 scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
-settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf8"));
+try {
+    settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+}
+catch(err) {
+    try {
+        fs.mkdirSync(getAppDataPath());
+    } catch(err2) { console.log("nothing"); }
+    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0"}');
+    settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+}
 
 document.body.style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
 

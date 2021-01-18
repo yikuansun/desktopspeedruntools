@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-currentSettings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf-8"));
+currentSettings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
 topbottom = currentSettings.topbottom;
@@ -19,7 +19,7 @@ function save_options() {
     topbottom = document.getElementById("verticalAlign").value;
     leftright = document.getElementById("horizontalAlign").value;
     hueRotate = document.getElementById("hueslider").value;
-    fs.writeFileSync(__dirname + "/settings.json", JSON.stringify({
+    fs.writeFileSync(getAppDataPath() + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
         topbottom: topbottom,
