@@ -42,7 +42,7 @@ if (window.process.platform === "darwin") {
         39: ";",
         40: "'",
         41: "`",
-        42: "Left Shift",
+        42: "Shift",
         43: "\\",
         44: "z",
         45: "x",
@@ -54,11 +54,11 @@ if (window.process.platform === "darwin") {
         51: ",",
         52: ".",
         53: "/",
-        54: "Right Shift",
-        56: "Left Alt",
+        54: "Shift",
+        56: "Alt",
         57: "Space",
         58: "CapsLock",
-        3640: "Right Alt",
+        3640: "Alt",
         3675: "Left Command",
         3676: "Right Command"
     };
