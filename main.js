@@ -1,5 +1,6 @@
 const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 function createWindow () {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
@@ -17,7 +18,20 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
-  mainWindow.setPosition(width - 250, 0);
+  settingsdata = JSON.parse(fs.readFileSync(__dirname + "/window/settings.json", "utf-8"));
+  if (settingsdata.topbottom == "top") {
+    mainWindow.y = 0;
+  }
+  else {
+    mainWindow.y = height - 400;
+  }
+  if (settingsdata.leftright == "right") {
+    mainWindow.x = width - 250;
+  }
+  else {
+    mainWindow.x = 0;
+  }
+  mainWindow.setPosition(mainWindow.x, mainWindow.y);
 }
 
 app.whenReady().then(() => {

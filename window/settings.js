@@ -3,27 +3,27 @@ const fs = require('fs');
 currentSettings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
-//topbottom = currentSettings.topbottom;
-//leftright = currentSettings.leftright;
+topbottom = currentSettings.topbottom;
+leftright = currentSettings.leftright;
 hueRotate = currentSettings.hueRotate;
 document.getElementById("alt").value = startKey;
 document.getElementById("shift").value = splitKey;
-//document.getElementById("verticalAlign").value = topbottom;
-//document.getElementById("horizontalAlign").value = leftright;
+document.getElementById("verticalAlign").value = topbottom;
+document.getElementById("horizontalAlign").value = leftright;
 document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
 
 function save_options() {
     startKey = document.getElementById("alt").value;
     splitKey = document.getElementById("shift").value;
-    //topbottom = document.getElementById("verticalAlign").value;
-    //leftright = document.getElementById("horizontalAlign").value;
+    topbottom = document.getElementById("verticalAlign").value;
+    leftright = document.getElementById("horizontalAlign").value;
     hueRotate = document.getElementById("hueslider").value;
     fs.writeFileSync(__dirname + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
-       // topbottom: topbottom,
-       // leftright: leftright,
+        topbottom: topbottom,
+        leftright: leftright,
         hueRotate: hueRotate
     }));
     var status = document.getElementById("status");
