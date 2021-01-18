@@ -53,8 +53,9 @@ keymap = {};
 
 
 ioHook.on("keydown", e => {
-    console.log(keycodeNames[e.keycode])
-    if (keycodeNames[e.keycode] == settings.startKey) {
+    keyname = keycodeNames[e.keycode];
+    console.log(keyname)
+    if (keyname == settings.startKey) {
         if (AltToStartClock) {
             clock = 0;
             startTime = now();
@@ -67,7 +68,7 @@ ioHook.on("keydown", e => {
             AltToStartClock = true;
         }
     }
-    else if (keycodeNames[e.keycode] = settings.splitKey) {
+    else if (keyname == settings.splitKey) {
         splitText = document.createElement("div");
         splitText.innerHTML = time.innerText;
         splitText.style.color = scheme[3];
@@ -80,7 +81,7 @@ ioHook.on("keydown", e => {
         splits.scrollTop = splits.scrollHeight;
     }
 
-    keymap[keycodeNames[e.keycode]] = true;
+    keymap[keyname] = true;
     outstring = "Keys pressed: ";
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
@@ -91,7 +92,8 @@ ioHook.on("keydown", e => {
 });
 
 ioHook.on("keyup", e => {
-    keymap[keycodeNames[e.keycode]] = false;
+    keyname = keycodeNames[e.keycode];
+    keymap[keyname] = false;
     outstring = "Keys pressed: ";
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
