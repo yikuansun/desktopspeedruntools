@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="icon16.png" />
+        <title>Settings - Browser Speedrun Tools</title>
+    </head>
+    <body>
+        <center>
+            Key for start/stop/restart: <select id="alt"><option>Alt</option><option>Shift</option><option>Enter</option></select>
+            <br />Key for record split: <select id="shift"><option>Shift</option><option>Alt</option><option>Enter</option></select>
+            <br />Popup position: <select id="verticalAlign"><option>top</option><option>bottom</option></select><select id="horizontalAlign"><option>right</option><option>left</option></select>
+            <br /> Color: <span id="colordisp" style="background-color: #002F63; white-space: pre;">        </span> <input id="hueslider" type="range" min="0" max="360" value="0">
+            <br /><button>Save settings</button>
+        </center>
+        <br /><i id="status"></i>
+        <script src="settings.js"></script>
+    </body>
+</html>

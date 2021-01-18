@@ -8,6 +8,21 @@ ioHook.on("keyup", event => {
  
 ioHook.start();*/
 
+document.getElementById("settingsbutton").addEventListener("click", function() {
+    const remote = require('electron').remote;
+    const BrowserWindow = remote.BrowserWindow;
+    const win = new BrowserWindow({
+        height: 600,
+        width: 800,
+        webPreferences: {
+          nodeIntegration: true,
+          enableRemoteModule: true,
+        }
+    });
+
+    win.loadFile("window/settings.html");
+});
+
 scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
 settings = JSON.parse(fs.readFileSync(__dirname + "/settings.json", "utf8"));
 
