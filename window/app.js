@@ -1,10 +1,6 @@
 const { BrowserWindow } = require('electron').remote;
 const fs = require('fs');
 const ioHook = require('iohook');
-
-ioHook.on("keyup", event => {
-    console.log(event);
-});
  
 ioHook.start();
 
@@ -55,35 +51,32 @@ updateClock = function() {
 
 keymap = {};
 
-document.addEventListener("keydown", function(e) {
-    if (!e.repeat) {
-        if (e.key == settings.startKey) {
-            if (AltToStartClock) {
-                clock = 0;
-                startTime = now();
-                splits.innerHTML = "";
-                mainLoop = setInterval(updateClock, 10);
-                AltToStartClock = false;
-            }
-            else {
-                clearInterval(mainLoop);
-                AltToStartClock = true;
-            }
-            e.preventDefault();
+
+ioHook.on("keydown", e => {
+    if (e.altKey) {
+        if (AltToStartClock) {
+            clock = 0;
+            startTime = now();
+            splits.innerHTML = "";
+            mainLoop = setInterval(updateClock, 10);
+            AltToStartClock = false;
         }
-        else if (e.key == settings.splitKey) {
-            splitText = document.createElement("div");
-            splitText.innerHTML = time.innerText;
-            splitText.style.color = scheme[3];
-            splitText.style.fontSize = "24px";
-            splitText.style.fontFamily = "Trebuchet MS";
-            splitText.style.marginLeft = "12px";
-            splitText.style.marginTop = "2px";
-            splitText.style.marginBottom = "2px";
-            splits.appendChild(splitText);
-            splits.scrollTop = splits.scrollHeight;
-            e.preventDefault();
+        else {
+            clearInterval(mainLoop);
+            AltToStartClock = true;
         }
+    }
+    else if (e.shiftKey) {
+        splitText = document.createElement("div");
+        splitText.innerHTML = time.innerText;
+        splitText.style.color = scheme[3];
+        splitText.style.fontSize = "24px";
+        splitText.style.fontFamily = "Trebuchet MS";
+        splitText.style.marginLeft = "12px";
+        splitText.style.marginTop = "2px";
+        splitText.style.marginBottom = "2px";
+        splits.appendChild(splitText);
+        splits.scrollTop = splits.scrollHeight;
     }
 
     keymap["1234567890abcdefghijklmnopqrstuvwxyz".includes(e.key)?e.key.toUpperCase():e.code] = true;
@@ -94,9 +87,9 @@ document.addEventListener("keydown", function(e) {
         }
     }
     keylog.innerText = outstring;
-}, false);
+});
 
-document.addEventListener("keyup", function(e) {
+ioHook.on("keyup", e => {
     keymap["1234567890abcdefghijklmnopqrstuvwxyz".includes(e.key)?e.key.toUpperCase():e.code] = false;
     outstring = "Keys pressed: ";
     for (keypressed in keymap) {
