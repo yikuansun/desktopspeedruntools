@@ -9,5 +9,20 @@
   },
   "dependencies": {
     "iohook": "^0.7.2"
-  }
+  },
+  "iohook": {
+    "targets": [
+      "node-59",
+      "electron-57"
+    ],
+    "platforms": [
+      "win32",
+      "darwin",
+      "linux"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  }  
 }
