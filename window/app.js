@@ -10,8 +10,8 @@ document.getElementById("settingsbutton").addEventListener("click", function() {
     const remote = require('electron').remote;
     const BrowserWindow = remote.BrowserWindow;
     const win = new BrowserWindow({
-        height: 600,
-        width: 800,
+        height: 169,
+        width: 400,
         webPreferences: {
           nodeIntegration: true,
           enableRemoteModule: true,
