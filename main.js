@@ -1,7 +1,8 @@
-const {app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 
 function createWindow () {
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const mainWindow = new BrowserWindow({
     width: 250,
     height: 400,
@@ -16,7 +17,7 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
-  mainWindow.setPosition(0, 0);
+  mainWindow.setPosition(width - 250, 0);
 }
 
 app.whenReady().then(() => {
