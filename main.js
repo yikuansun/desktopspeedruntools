@@ -22,6 +22,11 @@ ipcMain.on( "SettingsData", ( event, data ) => {
   mainWindow.setPosition(mainWindow.x, mainWindow.y);
 } );
 
+ipcMain.on( "reboot", ( event ) => {
+  app.relaunch();
+  app.exit();
+} );
+
 function createWindow () {
   global.mainWindow = new BrowserWindow({
     width: 250,

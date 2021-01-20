@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { ipcRenderer } = require('electron');
 
 alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
 numberkeys = "1234567890".split("");
@@ -27,6 +28,9 @@ document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
 
 function save_options() {
+    var status = document.getElementById("status");
+    status.innerText = "Please wait...";
+
     startKey = document.getElementById("alt").value;
     splitKey = document.getElementById("shift").value;
     topbottom = document.getElementById("verticalAlign").value;
@@ -39,11 +43,8 @@ function save_options() {
         leftright: leftright,
         hueRotate: hueRotate
     }));
-    var status = document.getElementById("status");
-    status.innerText = "Settings saved. Restart app to use updated settings";
-    setTimeout(function() {
-        status.textContent = "";
-    }, 5000);
+
+    ipcRenderer.send("reboot");
 }
 
 document.getElementById("hueslider").oninput = function() {
