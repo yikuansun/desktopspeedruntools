@@ -1,4 +1,4 @@
-# Desktop Speedrun Tools
+# Runtime Speedrun Tools for PC
 <img src="demopic.png"/>
 <a href="https://github.com/yikuansun/desktopspeedruntools/releases">Download</a>
 <h2>Usage</h2>
