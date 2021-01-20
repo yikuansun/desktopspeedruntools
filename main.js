@@ -36,16 +36,18 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
+
   try {
-    settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
-}
-catch(err) {
-    try {
-        fs.mkdirSync(getAppDataPath());
-    } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0"}');
-    settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
-}
+      settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+  }
+  catch(err) {
+      try {
+          fs.mkdirSync(getAppDataPath());
+      } catch(err2) { console.log("nothing"); }
+      fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0"}');
+      settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+  }
+  
   if (settingsdata.topbottom == "top") {
     mainWindow.y = 0;
   }
