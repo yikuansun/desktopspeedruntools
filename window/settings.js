@@ -1,5 +1,18 @@
 const fs = require('fs');
 
+alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
+numberkeys = "1234567890".split("");
+fkeys = "F1 F2 F3 F4 F5 F6 F7 F8 F9 F10".split(" ");
+
+for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
+    optionTag = document.createElement("option");
+    optionTag.innerHTML = key;
+    document.getElementById("alt").appendChild(optionTag);
+    optionTag = document.createElement("option");
+    optionTag.innerHTML = key;
+    document.getElementById("shift").appendChild(optionTag);
+}
+
 currentSettings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
@@ -35,19 +48,6 @@ function save_options() {
 
 document.getElementById("hueslider").oninput = function() {
     document.getElementById("colordisp").style.filter = "hue-rotate(" + this.value.toString() + "deg)";
-}
-
-alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
-numberkeys = "1234567890".split("");
-fkeys = "F1 F2 F3 F4 F5 F6 F7 F8 F9 F10".split(" ");
-
-for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
-    optionTag = document.createElement("option");
-    optionTag.innerHTML = key;
-    document.getElementById("alt").appendChild(optionTag);
-    optionTag = document.createElement("option");
-    optionTag.innerHTML = key;
-    document.getElementById("shift").appendChild(optionTag);
 }
 
 document.querySelector("button").onclick = save_options;
