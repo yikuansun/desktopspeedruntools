@@ -1,4 +1,4 @@
-const { BrowserWindow } = require('electron').remote;
+const { BrowserWindow, Menu, MenuItem } = require('electron').remote;
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const ioHook = require('iohook');
@@ -8,18 +8,32 @@ keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.plat
 
 ioHook.start();
 
-document.getElementById("settingsbutton").addEventListener("click", function() {
-    const win = new BrowserWindow({
-        height: 169,
-        width: 400,
-        webPreferences: {
-          nodeIntegration: true,
-          enableRemoteModule: true,
-        }
-    });
+rightClickMenu = new Menu();
+settingsButton = new MenuItem({
+    label: 'Open Settings',
+    click: () => {
+        const win = new BrowserWindow({
+            height: 169,
+            width: 400,
+            webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            }
+        });
 
-    win.loadFile("window/settings.html");
+        win.loadFile("window/settings.html");
+    }
 });
+closeButton = new MenuItem({
+    label: 'Close Runtime',
+    click: () => { window.close(); }
+});
+rightClickMenu.append(settingsButton);
+rightClickMenu.append(closeButton);
+window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    rightClickMenu.popup();
+}, false);
 
 scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
 
