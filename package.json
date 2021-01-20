@@ -1,5 +1,5 @@
 {
-  "name": "speedruntools",
+  "name": "runtime",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
