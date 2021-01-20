@@ -5,13 +5,13 @@ const fs = require('fs');
 function getAppDataPath() {
   switch (process.platform) {
     case "darwin": {
-      return path.join(process.env.HOME, "Library", "Application Support", "speedruntools");
+      return path.join(process.env.HOME, "Library", "Application Support", "runtime");
     }
     case "win32": {
-      return path.join(process.env.APPDATA, "speedruntools");
+      return path.join(process.env.APPDATA, "runtime");
     }
     case "linux": {
-      return path.join(process.env.HOME, ".speedruntools");
+      return path.join(process.env.HOME, ".runtime");
     }
     default: {
       console.log("Unsupported platform!");
