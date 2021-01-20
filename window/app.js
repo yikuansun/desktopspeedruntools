@@ -25,7 +25,7 @@ document.getElementById("settingsbutton").addEventListener("click", function() {
 scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
 settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
 
-document.body.style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
+document.getElementById("content").style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
 
 function now() {
     return ((new Date()).getTime());
