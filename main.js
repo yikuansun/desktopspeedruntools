@@ -1,52 +1,11 @@
-const { app, BrowserWindow, screen } = require('electron');
+const { app, BrowserWindow, screen, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
-function getAppDataPath() {
-  switch (process.platform) {
-    case "darwin": {
-      return path.join(process.env.HOME, "Library", "Application Support", "runtime");
-    }
-    case "win32": {
-      return path.join(process.env.APPDATA, "runtime");
-    }
-    case "linux": {
-      return path.join(process.env.HOME, ".runtime");
-    }
-    default: {
-      console.log("Unsupported platform!");
-      process.exit(1);
-    }
-  }
-}
-
-function createWindow () {
+ipcMain.on( "SettingsData", ( event, data ) => {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-  const mainWindow = new BrowserWindow({
-    width: 250,
-    height: 400,
-    frame: false,
-    resizable: false,
-    transparent: true,
-    alwaysOnTop: true,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
-      enableRemoteModule: true,
-    },
-  });
-  mainWindow.loadFile('window/index.html');
-
-  try {
-      settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
-  }
-  catch(err) {
-      try {
-          fs.mkdirSync(getAppDataPath());
-      } catch(err2) { console.log("nothing"); }
-      fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0"}');
-      settingsdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
-  }
+  settingsdata = data;
+  mainWindow = global.mainWindow;
   
   if (settingsdata.topbottom == "top") {
     mainWindow.y = 0;
@@ -61,6 +20,23 @@ function createWindow () {
     mainWindow.x = 0;
   }
   mainWindow.setPosition(mainWindow.x, mainWindow.y);
+} );
+
+function createWindow () {
+  global.mainWindow = new BrowserWindow({
+    width: 250,
+    height: 400,
+    frame: false,
+    resizable: false,
+    transparent: true,
+    alwaysOnTop: true,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      enableRemoteModule: true,
+    },
+  });
+  global.mainWindow.loadFile('window/index.html');
 }
 
 app.whenReady().then(() => {
