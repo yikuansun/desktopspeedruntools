@@ -9,8 +9,6 @@ keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.plat
 ioHook.start();
 
 document.getElementById("settingsbutton").addEventListener("click", function() {
-    const remote = require('electron').remote;
-    const BrowserWindow = remote.BrowserWindow;
     const win = new BrowserWindow({
         height: 169,
         width: 400,
