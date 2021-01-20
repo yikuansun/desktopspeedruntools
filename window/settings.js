@@ -39,17 +39,9 @@ document.getElementById("hueslider").oninput = function() {
 
 alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
 numberkeys = "1234567890".split("");
+fkeys = "F1 F2 F3 F4 F5 F6 F7 F8 F9 F10".split(" ");
 
-for (key of alphabetkeys) {
-    optionTag = document.createElement("option");
-    optionTag.innerHTML = key;
-    document.getElementById("alt").appendChild(optionTag);
-    optionTag = document.createElement("option");
-    optionTag.innerHTML = key;
-    document.getElementById("shift").appendChild(optionTag);
-}
-
-for (key of numberkeys) {
+for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
     optionTag = document.createElement("option");
     optionTag.innerHTML = key;
     document.getElementById("alt").appendChild(optionTag);
