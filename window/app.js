@@ -13,7 +13,7 @@ settingsButton = new MenuItem({
     label: 'Open Settings',
     click: () => {
         const win = new BrowserWindow({
-            height: 300,
+            height: 500,
             width: 400,
             webPreferences: {
             nodeIntegration: true,
@@ -60,7 +60,7 @@ catch(err) {
     try {
         fs.mkdirSync(getAppDataPath());
     } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0","globalFont":"Trebuchet MS"}');
+    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
     settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
 }
 
@@ -85,7 +85,7 @@ function now() {
 AltToStartClock = true;
 
 time = document.getElementById("time");
-clock = 0;
+clock = -(settings.countdownTime * 1000);
 
 splits = document.getElementById("splits");
 
@@ -98,11 +98,13 @@ function formatTime(realtime) {
     return m.toString() + ":" + s_display;
 }
 
+time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 updateClock = function() {
-    clock = now() - startTime - 10000;
+    clock = now() - startTime - settings.countdownTime * 1000;
     time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 };
 
+var scrolllen, segment_on;
 function fillsplits() {
     for (split of splitdata) {
         splitname = document.createElement("div");
@@ -110,6 +112,7 @@ function fillsplits() {
         splitname.style.width = "25%";
         splitname.style.color = scheme[3];
         splits.appendChild(splitname);
+        scrolllen = splitname.getBoundingClientRect().height;
         goaltime = document.createElement("div");
         goaltime.innerText = formatTime(split.time);
         goaltime.style.width = "22.5%";
@@ -155,7 +158,7 @@ ioHook.on("keydown", e => {
         if (splitText) {
             offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(2) + ")";
             splitText.innerText = time.innerText + offset;
-            splits.scrollTop = 24 * segment_on;
+            splits.scrollTop = scrolllen * segment_on;
             segment_on++;
         }
     }

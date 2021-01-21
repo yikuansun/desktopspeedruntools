@@ -33,6 +33,7 @@ topbottom = currentSettings.topbottom;
 leftright = currentSettings.leftright;
 hueRotate = currentSettings.hueRotate;
 globalFont = currentSettings.globalFont;
+countdownTime = currentSettings.countdownTime;
 document.getElementById("alt").value = startKey;
 document.getElementById("shift").value = splitKey;
 document.getElementById("verticalAlign").value = topbottom;
@@ -41,6 +42,7 @@ document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
 document.getElementById("fontselect").value = globalFont;
 document.getElementById("fontselect").style.fontFamily = globalFont;
+document.getElementById("countdown").value = countdownTime;
 
 function save_options() {
     var status = document.getElementById("status");
@@ -52,13 +54,15 @@ function save_options() {
     leftright = document.getElementById("horizontalAlign").value;
     hueRotate = document.getElementById("hueslider").value;
     globalFont = document.getElementById("fontselect").value;
+    countdownTime = document.getElementById("countdown").value;
     fs.writeFileSync(getAppDataPath() + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
         topbottom: topbottom,
         leftright: leftright,
         hueRotate: hueRotate,
-        globalFont: globalFont
+        globalFont: globalFont,
+        countdownTime: countdownTime
     }));
 
     ipcRenderer.send("reboot");
