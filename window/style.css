@@ -44,13 +44,6 @@ body {
     color: grey;
 }
 
-#footer button {
-    font-size: 14px;
-    font-family: Courier;
-    color: white;
-    background-color: #003D82;
-}
-
 #decoicon {
     position: fixed;
     bottom: -2px;
