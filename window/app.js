@@ -106,29 +106,22 @@ function fillsplits() {
     for (split of splitdata) {
         splitname = document.createElement("div");
         splitname.innerText = split.name;
-        splitname.style.width = "22.5%";
-        splitname.style.display = "inline-block";
-        splitname.style.padding = "5px";
+        splitname.style.width = "25%";
         splitname.style.color = scheme[3];
         splits.appendChild(splitname);
         goaltime = document.createElement("div");
         goaltime.innerText = formatTime(split.time);
         goaltime.style.width = "22.5%";
-        goaltime.style.display = "inline-block";
-        goaltime.style.padding = "5px";
         goaltime.style.color = scheme[3];
         splits.appendChild(goaltime);
         realtime = document.createElement("div");
         realtime.innerText = "";
         realtime.style.width = "40%";
-        realtime.style.display = "inline-block";
         realtime.setAttribute("class", "splittimes");
         realtime.dataset.goal = split.time;
-        realtime.style.padding = "5px";
         realtime.style.color = scheme[3];
         splits.appendChild(realtime);
     }
-    splits.style.fontSize = "12px";
     segment_on = 0;
 }
 fillsplits();
