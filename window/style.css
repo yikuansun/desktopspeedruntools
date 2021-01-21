@@ -18,7 +18,6 @@ body {
 }
 
 #time {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #2B6ABC;
     margin-top: 5px;
     margin-left: 10px;
@@ -34,7 +33,6 @@ body {
 .splitText {
     color: #0C53A6;
     font-size: 24px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-left: 12px;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -44,7 +42,6 @@ body {
     font-size: 12px;
     padding: 5px;
     color: grey;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #footer button {

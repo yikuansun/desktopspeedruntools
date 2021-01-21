@@ -14,18 +14,33 @@ for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
     document.getElementById("shift").appendChild(optionTag);
 }
 
+availFonts = ["Trebuchet MS", "Arial", "Courier New", "serif"];
+for (font of availFonts) {
+    optionTag = document.createElement("option");
+    optionTag.innerHTML = font;
+    optionTag.style.fontFamily = "font";
+    document.getElementById("fontselect").appendChild(optionTag);
+}
+document.getElementById("fontselect").style.fontFamily = document.getElementById("fontselect").value;
+document.getElementById("fontselect").addEventListener("input", function() {
+    this.style.fontFamily = this.value;
+});
+
 currentSettings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
 topbottom = currentSettings.topbottom;
 leftright = currentSettings.leftright;
 hueRotate = currentSettings.hueRotate;
+globalFont = currentSettings.globalFont;
 document.getElementById("alt").value = startKey;
 document.getElementById("shift").value = splitKey;
 document.getElementById("verticalAlign").value = topbottom;
 document.getElementById("horizontalAlign").value = leftright;
 document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
+document.getElementById("fontselect").value = globalFont;
+document.getElementById("fontselect").style.fontFamily = globalFont;
 
 function save_options() {
     var status = document.getElementById("status");
@@ -36,12 +51,14 @@ function save_options() {
     topbottom = document.getElementById("verticalAlign").value;
     leftright = document.getElementById("horizontalAlign").value;
     hueRotate = document.getElementById("hueslider").value;
+    globalFont = document.getElementById("fontselect").value;
     fs.writeFileSync(getAppDataPath() + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
         topbottom: topbottom,
         leftright: leftright,
-        hueRotate: hueRotate
+        hueRotate: hueRotate,
+        globalFont: globalFont
     }));
 
     ipcRenderer.send("reboot");
