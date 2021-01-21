@@ -70,6 +70,7 @@ try {
 catch(err) {
     splitdata = '[{"name":"Level 1","time":60000},{"name":"Level 2","time":120000},{"name":"Level 3","time":180000}]';
     fs.writeFileSync(getAppDataPath() + "/splits.json", splitdata);
+    splitdata = JSON.parse(splitdata);
 }
 
 ipcRenderer.send("SettingsData", settings);
