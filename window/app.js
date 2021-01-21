@@ -99,8 +99,8 @@ function formatTime(realtime) {
 }
 
 updateClock = function() {
-    clock = now() - startTime;
-    time.innerHTML = formatTime(clock);
+    clock = now() - startTime - 10000;
+    time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 };
 
 function fillsplits() {
