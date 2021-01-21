@@ -24,11 +24,27 @@ settingsButton = new MenuItem({
         win.loadFile("window/settings.html");
     }
 });
+customSplitsButton = new MenuItem({
+    label: 'Edit Splits',
+    click: () => {
+        const win = new BrowserWindow({
+            height: 500,
+            width: 400,
+            webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            }
+        });
+
+        win.loadFile("window/splitsmanager/editsplits.html");
+    }
+});
 closeButton = new MenuItem({
     label: 'Close Runtime',
     click: () => { window.close(); }
 });
 rightClickMenu.append(settingsButton);
+rightClickMenu.append(customSplitsButton);
 rightClickMenu.append(closeButton);
 window.addEventListener('contextmenu', (e) => {
     e.preventDefault();
