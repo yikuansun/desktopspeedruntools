@@ -128,7 +128,7 @@ function fillsplits() {
         realtime.style.color = scheme[3];
         splits.appendChild(realtime);
     }
-    splits.style.fontSize = "14px";
+    splits.style.fontSize = "12px";
     segment_on = 0;
 }
 fillsplits();
