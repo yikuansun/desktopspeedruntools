@@ -100,7 +100,7 @@ function formatTime(realtime) {
 
 time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 updateClock = function() {
-    if (clock < 1) {
+    if (clock < 0) {
         time.style.color = scheme[2];
     }
     else { time.style.color = scheme[3]; }
