@@ -64,6 +64,14 @@ catch(err) {
     settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
 }
 
+try {
+    splitdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/splits.json", "utf8"));
+}
+catch(err) {
+    splitdata = '[{"name":"Level 1","time":60},{"name":"Level 2","time":120},{"name":"Level 3","time":180}]';
+    fs.writeFileSync(getAppDataPath() + "/splits.json", splitdata);
+}
+
 ipcRenderer.send("SettingsData", settings);
 
 document.getElementById("content").style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
