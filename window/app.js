@@ -13,7 +13,7 @@ settingsButton = new MenuItem({
     label: 'Open Settings',
     click: () => {
         const win = new BrowserWindow({
-            height: 500,
+            height: 300,
             width: 400,
             webPreferences: {
             nodeIntegration: true,
