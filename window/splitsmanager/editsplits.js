@@ -8,6 +8,10 @@ function formatTime(realtime) {
     return m.toString() + ":" + s_display;
 }
 
+function parseTime(minutes, seconds) {
+    return (parseFloat(minutes) * 60 + parseFloat(seconds)) * 1000;
+}
+
 tbody = document.getElementById("tablebody");
 
 splits = JSON.parse(fs.readFileSync(getAppDataPath() + "/splits.json", "utf-8"));
@@ -26,19 +30,27 @@ for (split of splits) {
     celltwo = document.createElement("td");
     minuteinput = document.createElement("input");
     minuteinput.type = "number";
-    minuteinput.style.width = "30%";
+    minuteinput.style.width = "25%";
     minuteinput.style.textAlign = "right";
     minuteinput.value = formatted_time.split(":")[0];
     decospan = document.createElement("span");
     decospan.innerText = ":";
     secondinput = document.createElement("input");
     secondinput.type = "number";
-    secondinput.step = "0.01";
-    secondinput.style.width = "50%";
-    secondinput.value = formatted_time.split(":")[1];
+    secondinput.style.width = "20%";
+    secondinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[0];
+    secondinput.style.textAlign = "right";
+    decospan2 = document.createElement("span");
+    decospan2.innerText = ".";
+    hundredthinput = document.createElement("input");
+    hundredthinput.type = "number";
+    hundredthinput.style.width = "25%";
+    hundredthinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[1];
     celltwo.appendChild(minuteinput);
     celltwo.appendChild(decospan);
     celltwo.appendChild(secondinput);
+    celltwo.appendChild(decospan2);
+    celltwo.appendChild(hundredthinput);
     row.appendChild(celltwo);
 
     cellthree = document.createElement("td");
@@ -50,6 +62,7 @@ for (split of splits) {
         this.parentElement.parentElement.remove();
     });
 }
+
 document.getElementById("addrowbutton").addEventListener("click", function() {
     row = document.createElement("tr");
     tbody.appendChild(row);
@@ -65,19 +78,27 @@ document.getElementById("addrowbutton").addEventListener("click", function() {
     celltwo = document.createElement("td");
     minuteinput = document.createElement("input");
     minuteinput.type = "number";
-    minuteinput.style.width = "30%";
+    minuteinput.style.width = "25%";
     minuteinput.style.textAlign = "right";
     minuteinput.value = formatted_time.split(":")[0];
     decospan = document.createElement("span");
     decospan.innerText = ":";
     secondinput = document.createElement("input");
     secondinput.type = "number";
-    secondinput.step = "0.01";
-    secondinput.style.width = "50%";
-    secondinput.value = formatted_time.split(":")[1];
+    secondinput.style.width = "20%";
+    secondinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[0];
+    secondinput.style.textAlign = "right";
+    decospan2 = document.createElement("span");
+    decospan2.innerText = ".";
+    hundredthinput = document.createElement("input");
+    hundredthinput.type = "number";
+    hundredthinput.style.width = "25%";
+    hundredthinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[1];
     celltwo.appendChild(minuteinput);
     celltwo.appendChild(decospan);
     celltwo.appendChild(secondinput);
+    celltwo.appendChild(decospan2);
+    celltwo.appendChild(hundredthinput);
     row.appendChild(celltwo);
 
     cellthree = document.createElement("td");
@@ -88,4 +109,16 @@ document.getElementById("addrowbutton").addEventListener("click", function() {
     deletebutton.addEventListener("click", function() {
         this.parentElement.parentElement.remove();
     });
+});
+
+document.getElementById("submitbutton").addEventListener("click", function() {
+    matrix = [];
+    for (tr of tbody.children) {
+        matrix.push({
+            name: tr.children[0].children[0].value,
+            time: parseTime(tr.children[1].children[0].value, tr.children[1].children[2].value + "." + tr.children[1].children[4].value),
+        });
+    }
+    fs.writeFileSync(getAppDataPath() + "/splits.json", JSON.stringify(matrix));
+    ipcRenderer.send("reboot");
 });
