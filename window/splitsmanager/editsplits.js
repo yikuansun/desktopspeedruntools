@@ -74,11 +74,11 @@ document.getElementById("addrowbutton").addEventListener("click", function() {
     cellone = document.createElement("td");
     nameinput = document.createElement("input");
     nameinput.style.width = "95%";
-    nameinput.value = split.name;
+    nameinput.value = "Level 1";
     cellone.appendChild(nameinput);
     row.appendChild(cellone);
 
-    formatted_time = formatTime(split.time);
+    formatted_time = formatTime(10000);
     celltwo = document.createElement("td");
     minuteinput = document.createElement("input");
     minuteinput.type = "number";
