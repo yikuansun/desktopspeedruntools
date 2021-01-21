@@ -30,6 +30,12 @@ body {
     overflow-y: scroll;
 }
 
+#splits div {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .splitText {
     color: #0C53A6;
     font-size: 24px;

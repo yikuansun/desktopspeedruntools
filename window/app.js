@@ -159,7 +159,7 @@ ioHook.on("keydown", e => {
     else if (keyname == settings.splitKey) {
         splitText = document.getElementsByClassName("splittimes")[segment_on];
         if (splitText) {
-            offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toString() + ")";
+            offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(2) + ")";
             splitText.innerText = time.innerText + offset;
             splits.scrollTop = splits.scrollHeight;
             segment_on++;
