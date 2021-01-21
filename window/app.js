@@ -88,19 +88,49 @@ clock = 0;
 
 splits = document.getElementById("splits");
 
-keylog = document.getElementById("keylog")
+keylog = document.getElementById("keylog");
 
-clockDisp = function() {
-    s = (clock % 60000) / 1000;
-    m = Math.floor(clock / 60000);
+function formatTime(realtime) {
+    s = (realtime % 60000) / 1000;
+    m = Math.floor(realtime / 60000);
     s_display = (s < 10)?("0"+s.toFixed(2)):(s.toFixed(2));
-    time.innerHTML = m.toString() + ":" + s_display;
-};
+    return m.toString() + ":" + s_display;
+}
 
 updateClock = function() {
     clock = now() - startTime;
-    clockDisp();
+    time.innerHTML = formatTime(clock);
 };
+
+function fillsplits() {
+    for (split of splitdata) {
+        splitname = document.createElement("div");
+        splitname.innerText = split.name;
+        splitname.style.width = "35%";
+        splitname.style.display = "inline-block";
+        splitname.style.padding = "5px";
+        splitname.style.color = scheme[3];
+        splits.appendChild(splitname);
+        goaltime = document.createElement("div");
+        goaltime.innerText = formatTime(split.time);
+        goaltime.style.width = "25%";
+        goaltime.style.display = "inline-block";
+        goaltime.style.padding = "5px";
+        goaltime.style.color = scheme[3];
+        splits.appendChild(goaltime);
+        realtime = document.createElement("div");
+        realtime.innerText = "";
+        realtime.style.width = "25%";
+        realtime.style.display = "inline-block";
+        realtime.setAttribute("class", "splittimes");
+        realtime.dataset.goal = split.time;
+        realtime.style.padding = "5px";
+        realtime.style.color = scheme[3];
+        splits.appendChild(realtime);
+    }
+    segment_on = 0;
+}
+fillsplits();
 
 keymap = {};
 
@@ -116,6 +146,7 @@ ioHook.on("keydown", e => {
             clock = 0;
             startTime = now();
             splits.innerHTML = "";
+            fillsplits();
             mainLoop = setInterval(updateClock, 10);
             AltToStartClock = false;
         }
@@ -125,16 +156,12 @@ ioHook.on("keydown", e => {
         }
     }
     else if (keyname == settings.splitKey) {
-        splitText = document.createElement("div");
-        splitText.innerHTML = time.innerText;
-        splitText.style.color = scheme[3];
-        splitText.style.fontSize = "24px";
-        splitText.style.fontFamily = "Trebuchet MS";
-        splitText.style.marginLeft = "12px";
-        splitText.style.marginTop = "2px";
-        splitText.style.marginBottom = "2px";
-        splits.appendChild(splitText);
-        splits.scrollTop = splits.scrollHeight;
+        splitText = document.getElementsByClassName("splittimes")[segment_on];
+        if (splitText) {
+            splitText.innerText = time.innerText;
+            splits.scrollTop = splits.scrollHeight;
+            segment_on++;
+        }
     }
 
     keymap[keyname] = true;
