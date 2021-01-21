@@ -100,6 +100,10 @@ function formatTime(realtime) {
 
 time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 updateClock = function() {
+    if (clock < 1) {
+        time.style.color = scheme[2];
+    }
+    else { time.style.color = scheme[3]; }
     clock = now() - startTime - settings.countdownTime * 1000;
     time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 };
