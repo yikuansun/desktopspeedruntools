@@ -106,21 +106,21 @@ function fillsplits() {
     for (split of splitdata) {
         splitname = document.createElement("div");
         splitname.innerText = split.name;
-        splitname.style.width = "27.5%";
+        splitname.style.width = "22.5%";
         splitname.style.display = "inline-block";
         splitname.style.padding = "5px";
         splitname.style.color = scheme[3];
         splits.appendChild(splitname);
         goaltime = document.createElement("div");
         goaltime.innerText = formatTime(split.time);
-        goaltime.style.width = "25%";
+        goaltime.style.width = "22.5%";
         goaltime.style.display = "inline-block";
         goaltime.style.padding = "5px";
         goaltime.style.color = scheme[3];
         splits.appendChild(goaltime);
         realtime = document.createElement("div");
         realtime.innerText = "";
-        realtime.style.width = "35%";
+        realtime.style.width = "40%";
         realtime.style.display = "inline-block";
         realtime.setAttribute("class", "splittimes");
         realtime.dataset.goal = split.time;
@@ -128,7 +128,7 @@ function fillsplits() {
         realtime.style.color = scheme[3];
         splits.appendChild(realtime);
     }
-    splits.style.fontSize = "10px";
+    splits.style.fontSize = "14px";
     segment_on = 0;
 }
 fillsplits();
@@ -159,7 +159,7 @@ ioHook.on("keydown", e => {
     else if (keyname == settings.splitKey) {
         splitText = document.getElementsByClassName("splittimes")[segment_on];
         if (splitText) {
-            offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + formatTime(Math.abs(clock - parseFloat(splitText.dataset.goal))) + ")";
+            offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toString() + ")";
             splitText.innerText = time.innerText + offset;
             splits.scrollTop = splits.scrollHeight;
             segment_on++;
