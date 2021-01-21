@@ -154,7 +154,7 @@ ioHook.on("keydown", e => {
         if (splitText) {
             offset = " (" + ((clock < parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(2) + ")";
             splitText.innerText = time.innerText + offset;
-            splits.scrollTop = splits.scrollHeight;
+            splits.scrollTop = 24 * segment_on;
             segment_on++;
         }
     }
