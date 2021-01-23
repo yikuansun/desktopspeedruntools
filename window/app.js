@@ -145,7 +145,7 @@ ioHook.on("keydown", e => {
     //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
         if (AltToStartClock) {
-            clock = 0;
+            clock = 0 - settings.countdownTime * 1000;
             startTime = now();
             splits.innerHTML = "";
             fillsplits();
