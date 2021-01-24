@@ -41,7 +41,7 @@ customSplitsButton = new MenuItem({
 });
 closeButton = new MenuItem({
     label: 'Close Runtime',
-    click: () => { window.close(); }
+    click: () => { ipcRenderer.send("closeappcompletely"); }
 });
 rightClickMenu.append(settingsButton);
 rightClickMenu.append(customSplitsButton);

@@ -27,6 +27,10 @@ ipcMain.on( "reboot", ( event ) => {
   app.exit();
 } );
 
+ipcMain.on( "closeappcompletely", ( event ) => {
+  app.quit();
+} );
+
 function createWindow () {
   global.mainWindow = new BrowserWindow({
     width: 250,
@@ -50,7 +54,5 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   })
 });
-
-app.on('window-all-closed', function () { app.quit(); });
 
 app.allowRendererProcessReuse = false;
