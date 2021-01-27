@@ -111,24 +111,24 @@ updateClock = function() {
 var scrolllen, segment_on;
 function fillsplits() {
     for (split of splitdata) {
-        splitname = document.createElement("div");
+        row = document.createElement("tr");
+        splitname = document.createElement("td");
         splitname.innerText = split.name;
         splitname.style.width = "25%";
-        splitname.style.color = scheme[3];
-        splits.appendChild(splitname);
-        scrolllen = splitname.getBoundingClientRect().height;
-        goaltime = document.createElement("div");
+        row.appendChild(splitname);
+        goaltime = document.createElement("td");
         goaltime.innerText = formatTime(split.time);
-        goaltime.style.width = "22.5%";
-        goaltime.style.color = scheme[3];
-        splits.appendChild(goaltime);
-        realtime = document.createElement("div");
+        goaltime.style.width = "25%";
+        row.appendChild(goaltime);
+        realtime = document.createElement("td");
         realtime.innerText = "";
-        realtime.style.width = "40%";
+        realtime.style.width = "50%";
         realtime.setAttribute("class", "splittimes");
         realtime.dataset.goal = split.time;
-        realtime.style.color = scheme[3];
-        splits.appendChild(realtime);
+        row.appendChild(realtime);
+        splits.appendChild(row);
+
+        scrolllen = row.getBoundingClientRect().height;
     }
     segment_on = 0;
 }
@@ -163,7 +163,7 @@ ioHook.on("keydown", e => {
             offset = " (" + ((clock <= parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(2) + ")";
             splitText.innerText = time.innerText + offset;
             if (segment_on > 1) {
-                smoothscroll.scrollTopAmnt(splits, scrolllen + 4);
+                smoothscroll.scrollTopAmnt(splits_outer_div, scrolllen);
             }
             segment_on++;
         }

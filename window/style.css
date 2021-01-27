@@ -25,18 +25,25 @@ body {
     font-size: 40px;
 }
 
-#splits {
+#splits_outer_div {
     flex: 1 1 auto;
     overflow-y: scroll;
 }
 
-#splits div {
+#splits {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#splits td {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
     padding: 5px;
     font-size: 12px;
+    color: #0C53A6;
+    box-sizing: border-box;
 }
 
 .splitText {
