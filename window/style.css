@@ -62,3 +62,7 @@ body {
     z-index: 100;
     user-select: none;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
