@@ -170,25 +170,25 @@ ioHook.on("keydown", e => {
     }
 
     keymap[keyname] = true;
-    outstring = "Keys pressed: ";
+    array_to_disp = [];
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
-            outstring += keypressed + "; ";
+            array_to_disp.push(keypressed);
         }
     }
-    keylog.innerText = outstring;
+    keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
 });
 
 ioHook.on("keyup", e => {
     keyname = keycodeNames[e.keycode];
     keymap[keyname] = false;
-    outstring = "Keys pressed: ";
+    array_to_disp = [];
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
-            outstring += keypressed + "; ";
+            array_to_disp.push(keypressed);
         }
     }
-    keylog.innerText = outstring;
+    keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
 });
 /*
 // key farming
