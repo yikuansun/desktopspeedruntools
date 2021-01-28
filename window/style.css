@@ -36,7 +36,7 @@ body {
 }
 
 #splits td {
-    text-overflow: ellipsis;
+    text-overflow: hidden;
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
