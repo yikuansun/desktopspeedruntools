@@ -140,6 +140,16 @@ keymap = {};
 iohookkeycodes = [];
 jskeynames = [];*/
 
+function displayPressedKeys() {
+    array_to_disp = [];
+    for (keypressed in keymap) {
+        if (keymap[keypressed]) {
+            array_to_disp.push(keypressed);
+        }
+    }
+    keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
+}
+
 ioHook.on("keydown", e => {
     keyname = keycodeNames[e.keycode];
     //iohookkeycodes.push(e.keycode);
@@ -170,25 +180,15 @@ ioHook.on("keydown", e => {
     }
 
     keymap[keyname] = true;
-    array_to_disp = [];
-    for (keypressed in keymap) {
-        if (keymap[keypressed]) {
-            array_to_disp.push(keypressed);
-        }
-    }
-    keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
+
+    displayPressedKeys();
 });
 
 ioHook.on("keyup", e => {
     keyname = keycodeNames[e.keycode];
     keymap[keyname] = false;
-    array_to_disp = [];
-    for (keypressed in keymap) {
-        if (keymap[keypressed]) {
-            array_to_disp.push(keypressed);
-        }
-    }
-    keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
+    
+    displayPressedKeys();
 });
 /*
 // key farming
