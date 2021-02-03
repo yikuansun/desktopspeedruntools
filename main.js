@@ -1,4 +1,4 @@
-const { app, BrowserWindow, screen, ipcMain } = require('electron');
+const { app, BrowserWindow, screen, ipcMain, Menu } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -48,11 +48,34 @@ function createWindow () {
   global.mainWindow.loadFile('window/index.html');
 }
 
+function setMainMenu() {
+  const template = [
+    {
+      label: 'Filter',
+      submenu: [
+        {
+          label: 'Read the Docs',
+          accelerator: 'Shift+CmdOrCtrl+H',
+          click() {
+            var docsWindow = new BrowserWindow({
+              width: 800,
+              height: 450
+            });
+            docsWindow.loadURL('https://yikuansun.github.io/desktopspeedruntools/#usage');
+          }
+        }
+      ]
+    }
+  ];
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+}
+
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  })
+    if (BrowserWindow.getAllWindows().length == 0) createWindow();
+  });
+  setMainMenu();
 });
 
 app.allowRendererProcessReuse = false;
