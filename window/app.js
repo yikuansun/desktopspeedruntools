@@ -20,7 +20,7 @@ settingsButton = new MenuItem({
             enableRemoteModule: true,
             }
         });
-        win.setMenuBarVisibility(false);
+
         win.loadFile("window/settings.html");
     }
 });
@@ -35,7 +35,7 @@ customSplitsButton = new MenuItem({
             enableRemoteModule: true,
             }
         });
-        win.setMenuBarVisibility(false);
+
         win.loadFile("window/splitsmanager/editsplits.html");
     }
 });
