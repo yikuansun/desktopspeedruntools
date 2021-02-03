@@ -2,6 +2,13 @@
 <img src="demopic.png" />
 
 # <a href="https://github.com/yikuansun/desktopspeedruntools/releases">Download</a>
+<h2>Features</h2>
+ - Global hotkeys to control stopwatch
+ - Display of which keys are currently being pressed
+ - Comparison RTA splits with goal times
+ - Customizable stopwatch countdown
+ - Customizable fonts, colors, and popup window position
+ - Translucent popup window
 <h2>Usage</h2>
 Download the app. Open it. Close by right-clicking anywhere on the popup and pressing <b>Close Runtime</b>. The app will lag at first; check if it is ready by pressing a key and seeing if it appears after <b>Keys pressed</b> (shown at the bottom of the popup). Start, stop, or restart the stopwatch using <b>Alt</b>; record splits by pressing <b>Shift</b>. Change information about the splits by right-clicking the popup and pressing <b>Edit Splits</b>. Edit the table and press <b>Save splits</b> to save them. Edit your settings by right-clicking the popup and pressing <b>Open Settings</b>. Once settings are changed, press the <b>Save settings</b> button.
 <h2>Running an unpackaged version</h2>
