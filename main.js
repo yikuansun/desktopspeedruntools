@@ -1,4 +1,5 @@
 const { app, BrowserWindow, screen, ipcMain, Menu } = require('electron');
+const shell = require('electron').shell;
 const path = require('path');
 const fs = require('fs');
 
@@ -57,11 +58,7 @@ function setMainMenu() {
           label: 'Read the Docs',
           accelerator: 'Shift+CmdOrCtrl+H',
           click() {
-            var docsWindow = new BrowserWindow({
-              width: 800,
-              height: 450
-            });
-            docsWindow.loadURL('https://yikuansun.github.io/desktopspeedruntools/#usage');
+            shell.openExternal('https://github.com/yikuansun/desktopspeedruntools#usage');
           }
         }
       ]
