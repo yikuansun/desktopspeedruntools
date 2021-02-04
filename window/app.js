@@ -15,6 +15,7 @@ settingsButton = new MenuItem({
         const win = new BrowserWindow({
             height: 500,
             width: 400,
+            resizable: false,
             webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -30,6 +31,7 @@ customSplitsButton = new MenuItem({
         const win = new BrowserWindow({
             height: 500,
             width: 400,
+            resizable: false,
             webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,

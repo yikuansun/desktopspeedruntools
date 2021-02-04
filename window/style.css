@@ -68,6 +68,7 @@ body {
     height: 50px;
     z-index: 100;
     user-select: none;
+    -webkit-user-drag: none;
 }
 
 ::-webkit-scrollbar {
