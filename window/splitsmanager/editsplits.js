@@ -26,7 +26,8 @@ for (split of splits) {
 
     cellone = document.createElement("td");
     nameinput = document.createElement("input");
-    nameinput.style.width = "95%";
+    nameinput.style.width = "100%";
+    nameinput.style.boxSizing = "border-box";
     nameinput.value = split.name;
     cellone.appendChild(nameinput);
     row.appendChild(cellone);
@@ -78,7 +79,8 @@ document.getElementById("addrowbutton").addEventListener("click", function() {
 
     cellone = document.createElement("td");
     nameinput = document.createElement("input");
-    nameinput.style.width = "95%";
+    nameinput.style.width = "100%";
+    nameinput.style.boxSizing = "border-box";
     nameinput.value = "Level 1";
     cellone.appendChild(nameinput);
     row.appendChild(cellone);
