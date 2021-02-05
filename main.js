@@ -52,7 +52,7 @@ function createWindow () {
 function setMainMenu() {
   const template = [
     {
-      label: 'Filter',
+      label: 'Help',
       submenu: [
         {
           label: 'Read the Docs',
