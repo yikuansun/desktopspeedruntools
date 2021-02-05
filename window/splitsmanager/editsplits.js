@@ -1,5 +1,10 @@
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
+const customTitlebar = require('custom-electron-titlebar');
+
+new customTitlebar.Titlebar({
+	backgroundColor: customTitlebar.Color.fromHex('#002F63')
+});
 
 function formatTime(realtime) {
     s = (realtime % 60000) / 1000;
@@ -130,3 +135,5 @@ document.getElementById("submitbutton").addEventListener("click", function() {
     fs.writeFileSync(getAppDataPath() + "/splits.json", JSON.stringify(matrix));
     ipcRenderer.send("reboot");
 });
+
+document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";

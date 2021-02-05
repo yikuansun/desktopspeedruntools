@@ -16,9 +16,10 @@ settingsButton = new MenuItem({
             height: 500,
             width: 400,
             resizable: false,
+            titleBarStyle: "hidden",
             webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
+                nodeIntegration: true,
+                enableRemoteModule: true,
             }
         });
 
@@ -32,9 +33,10 @@ customSplitsButton = new MenuItem({
             height: 500,
             width: 400,
             resizable: false,
+            titleBarStyle: "hidden",
             webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
+                nodeIntegration: true,
+                enableRemoteModule: true,
             }
         });
 

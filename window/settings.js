@@ -1,5 +1,10 @@
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
+const customTitlebar = require('custom-electron-titlebar');
+
+new customTitlebar.Titlebar({
+	backgroundColor: customTitlebar.Color.fromHex('#141414')
+});
 
 alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
 numberkeys = "1234567890".split("");
@@ -42,6 +47,7 @@ document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
 document.getElementById("fontselect").value = globalFont;
 document.getElementById("fontselect").style.fontFamily = globalFont;
+document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
 document.getElementById("countdown").value = countdownTime;
 
 function save_options() {
