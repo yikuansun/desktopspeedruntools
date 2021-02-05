@@ -4,21 +4,23 @@
         <link rel="icon" href="../icon128.ico" />
         <title>Settings - Runtime Speedrun Tools</title>
     </head>
-    <body>
-        <center>
-            <b>Clock</b>
-            <br />Countdown: <select id="countdown"><option value="10">10s</option><option value="5">5s</option><option value="0">None</option></select>
-            <br /><br /><b>Hotkeys</b>
-            <br />Key for start/stop/restart: <select id="alt"><option>Alt</option><option>Shift</option><option>Enter</option></select>
-            <br />Key for record split: <select id="shift"><option>Alt</option><option>Shift</option><option>Enter</option></select>
-            <br /><br /><b>Popup</b>
-            <br />Popup position: <select id="verticalAlign"><option>top</option><option>bottom</option></select><select id="horizontalAlign"><option>right</option><option>left</option></select>
-            <br /><br /><b>Style</b>
-            <br />Color: <span id="colordisp" style="background-color: #002F63; white-space: pre;">        </span> <input id="hueslider" type="range" min="0" max="360" value="0">
-            <br />Font: <select id="fontselect"></select>
-            <br /><br /><button>Save settings</button>
-        </center>
-        <br /><i id="status"></i>
+    <body style="margin: 0; width: 100vh; height: 100vh;">
+        <table style="width: 100%; height: 100%"><tr><td>
+            <center>
+                <b>Clock</b>
+                <br />Countdown: <select id="countdown"><option value="10">10s</option><option value="5">5s</option><option value="0">None</option></select>
+                <br /><br /><b>Hotkeys</b>
+                <br />Key for start/stop/restart: <select id="alt"><option>Alt</option><option>Shift</option><option>Enter</option></select>
+                <br />Key for record split: <select id="shift"><option>Alt</option><option>Shift</option><option>Enter</option></select>
+                <br /><br /><b>Popup</b>
+                <br />Popup position: <select id="verticalAlign"><option>top</option><option>bottom</option></select><select id="horizontalAlign"><option>right</option><option>left</option></select>
+                <br /><br /><b>Style</b>
+                <br />Color: <span id="colordisp" style="background-color: #002F63; white-space: pre;">        </span> <input id="hueslider" type="range" min="0" max="360" value="0">
+                <br />Font: <select id="fontselect"></select>
+                <br /><br /><button>Save settings</button>
+            </center>
+            <br /><i id="status"></i>
+        </td></tr></table>
         <script src="lib/getappdatapath.js"></script>
         <script src="settings.js"></script>
     </body>
