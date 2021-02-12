@@ -69,10 +69,12 @@ function save_options() {
     }));
 
     ipcRenderer.send("reboot");
+
+    return false;
 }
 
 document.getElementById("hueslider").oninput = function() {
     document.getElementById("colordisp").style.filter = "hue-rotate(" + this.value.toString() + "deg)";
 }
 
-document.querySelector("button").onclick = save_options;
+document.querySelector("form").onsubmit = save_options;
