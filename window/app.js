@@ -12,30 +12,24 @@ rightClickMenu = new Menu();
 settingsButton = new MenuItem({
     label: 'Open Settings',
     click: () => {
+        winsettings = {
+            height: 500,
+            width: 400,
+            resizable: false,
+            titleBarStyle: "hidden",
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+            }
+        };
         if (process.platform == "win32") {
-            win = new BrowserWindow({
-                height: 500,
-                width: 400,
-                resizable: false,
-                frame: false,
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            });
+            winsettings.frame = false;
         }
         else {
-            win = new BrowserWindow({
-                height: 500,
-                width: 400,
-                resizable: false,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            });
+            winsettings.titleBarStyle = "hidden";
         }
+        
+        win = new BrowserWindow(winsettings);
 
         win.loadFile("window/settings.html");
     }
@@ -43,30 +37,24 @@ settingsButton = new MenuItem({
 customSplitsButton = new MenuItem({
     label: 'Edit Splits',
     click: () => {
+        winsettings = {
+            height: 500,
+            width: 400,
+            resizable: false,
+            titleBarStyle: "hidden",
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+            }
+        };
         if (process.platform == "win32") {
-            win = new BrowserWindow({
-                height: 500,
-                width: 400,
-                resizable: false,
-                frame: false,
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            });
+            winsettings.frame = false;
         }
         else {
-            win = new BrowserWindow({
-                height: 500,
-                width: 400,
-                resizable: false,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            });
+            winsettings.titleBarStyle = "hidden";
         }
+        
+        win = new BrowserWindow(winsettings);
 
         win.loadFile("window/splitsmanager/editsplits.html");
     }
