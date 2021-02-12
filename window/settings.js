@@ -51,9 +51,6 @@ document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI',
 document.getElementById("countdown").value = countdownTime;
 
 function save_options() {
-    var status = document.getElementById("status");
-    status.innerText = "Please wait...";
-
     startKey = document.getElementById("alt").value;
     splitKey = document.getElementById("shift").value;
     topbottom = document.getElementById("verticalAlign").value;
