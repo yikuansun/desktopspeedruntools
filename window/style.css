@@ -1,6 +1,6 @@
 #content {
-    width: 250px;
-    height: 400px;
+    width: 100vw;
+    height: 100vh;
     background-image: url(bg_translucent.png);
     background-size: cover;
     display: flex;
