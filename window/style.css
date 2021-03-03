@@ -5,6 +5,8 @@
     background-size: cover;
     display: flex;
     flex-flow: column;
+    user-select: none;
+    -webkit-app-region: drag;
 }
 
 body {
@@ -15,7 +17,6 @@ body {
     width: 100%;
     height: 5px;
     background-color: #002F63;
-    -webkit-app-region: drag;
 }
 
 #time {
