@@ -34,15 +34,11 @@ document.getElementById("fontselect").addEventListener("input", function() {
 currentSettings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
-topbottom = currentSettings.topbottom;
-leftright = currentSettings.leftright;
 hueRotate = currentSettings.hueRotate;
 globalFont = currentSettings.globalFont;
 countdownTime = currentSettings.countdownTime;
 document.getElementById("alt").value = startKey;
 document.getElementById("shift").value = splitKey;
-document.getElementById("verticalAlign").value = topbottom;
-document.getElementById("horizontalAlign").value = leftright;
 document.getElementById("hueslider").value = hueRotate;
 document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.toString() + "deg)";
 document.getElementById("fontselect").value = globalFont;
@@ -53,16 +49,12 @@ document.getElementById("countdown").value = countdownTime;
 function save_options() {
     startKey = document.getElementById("alt").value;
     splitKey = document.getElementById("shift").value;
-    topbottom = document.getElementById("verticalAlign").value;
-    leftright = document.getElementById("horizontalAlign").value;
     hueRotate = document.getElementById("hueslider").value;
     globalFont = document.getElementById("fontselect").value;
     countdownTime = document.getElementById("countdown").value;
     fs.writeFileSync(getAppDataPath() + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
-        topbottom: topbottom,
-        leftright: leftright,
         hueRotate: hueRotate,
         globalFont: globalFont,
         countdownTime: countdownTime

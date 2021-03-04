@@ -80,7 +80,7 @@ catch(err) {
     try {
         fs.mkdirSync(getAppDataPath());
     } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","topbottom":"top","leftright":"right","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
+    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
     settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
 }
 
@@ -92,8 +92,6 @@ catch(err) {
     fs.writeFileSync(getAppDataPath() + "/splits.json", splitdata);
     splitdata = JSON.parse(splitdata);
 }
-
-ipcRenderer.send("SettingsData", settings);
 
 document.getElementById("content").style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
 document.getElementById("content").style.fontFamily = settings.globalFont;

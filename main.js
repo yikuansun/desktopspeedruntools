@@ -1,27 +1,7 @@
-const { app, BrowserWindow, screen, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const shell = require('electron').shell;
 const path = require('path');
 const fs = require('fs');
-
-ipcMain.on( "SettingsData", ( event, data ) => {
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-  settingsdata = data;
-  mainWindow = global.mainWindow;
-  
-  if (settingsdata.topbottom == "top") {
-    mainWindow.y = 0;
-  }
-  else {
-    mainWindow.y = height - 400;
-  }
-  if (settingsdata.leftright == "right") {
-    mainWindow.x = width - 250;
-  }
-  else {
-    mainWindow.x = 0;
-  }
-  mainWindow.setPosition(mainWindow.x, mainWindow.y);
-} );
 
 ipcMain.on( "reboot", ( event ) => {
   app.relaunch();
@@ -36,6 +16,8 @@ function createWindow () {
   global.mainWindow = new BrowserWindow({
     width: 250,
     height: 400,
+    x: 0,
+    y: 0,
     frame: false,
     resizable: false,
     transparent: true,
