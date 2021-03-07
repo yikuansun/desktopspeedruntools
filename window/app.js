@@ -3,6 +3,10 @@ const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const ioHook = require('iohook');
 const os = require('os');
+const electron = require('electron');
+const userDataPath = (electron.app || electron.remote.app).getPath(
+    'userData'
+);
 
 keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
@@ -74,22 +78,22 @@ window.addEventListener('contextmenu', (e) => {
 scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
 
 try {
-    settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+    settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
 catch(err) {
     try {
-        fs.mkdirSync(getAppDataPath());
+        fs.mkdirSync(userDataPath);
     } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(getAppDataPath() + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
-    settings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf8"));
+    fs.writeFileSync(userDataPath + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
+    settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
 
 try {
-    splitdata = JSON.parse(fs.readFileSync(getAppDataPath() + "/splits.json", "utf8"));
+    splitdata = JSON.parse(fs.readFileSync(userDataPath + "/splits.json", "utf8"));
 }
 catch(err) {
     splitdata = '[{"name":"Level 1","time":60000},{"name":"Level 2","time":120000},{"name":"Level 3","time":180000}]';
-    fs.writeFileSync(getAppDataPath() + "/splits.json", splitdata);
+    fs.writeFileSync(userDataPath + "/splits.json", splitdata);
     splitdata = JSON.parse(splitdata);
 }
 

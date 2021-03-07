@@ -1,6 +1,10 @@
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const customTitlebar = require('custom-electron-titlebar');
+const electron = require('electron');
+const userDataPath = (electron.app || electron.remote.app).getPath(
+    'userData'
+);
 
 new customTitlebar.Titlebar({
 	backgroundColor: customTitlebar.Color.fromHex('#141414')
@@ -31,7 +35,7 @@ document.getElementById("fontselect").addEventListener("input", function() {
     this.style.fontFamily = this.value;
 });
 
-currentSettings = JSON.parse(fs.readFileSync(getAppDataPath() + "/settings.json", "utf-8"));
+currentSettings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf-8"));
 startKey = currentSettings.startKey;
 splitKey = currentSettings.splitKey;
 hueRotate = currentSettings.hueRotate;
@@ -52,7 +56,7 @@ function save_options() {
     hueRotate = document.getElementById("hueslider").value;
     globalFont = document.getElementById("fontselect").value;
     countdownTime = document.getElementById("countdown").value;
-    fs.writeFileSync(getAppDataPath() + "/settings.json", JSON.stringify({
+    fs.writeFileSync(userDataPath + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
         hueRotate: hueRotate,

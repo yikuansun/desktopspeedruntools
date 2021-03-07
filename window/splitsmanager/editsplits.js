@@ -1,6 +1,10 @@
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const customTitlebar = require('custom-electron-titlebar');
+const electron = require('electron');
+const userDataPath = (electron.app || electron.remote.app).getPath(
+    'userData'
+);
 
 new customTitlebar.Titlebar({
 	backgroundColor: customTitlebar.Color.fromHex('#002F63')
@@ -19,7 +23,7 @@ function parseTime(minutes, seconds) {
 
 tbody = document.getElementById("tablebody");
 
-splits = JSON.parse(fs.readFileSync(getAppDataPath() + "/splits.json", "utf-8"));
+splits = JSON.parse(fs.readFileSync(userDataPath + "/splits.json", "utf-8"));
 addTableRow = function(split) {
     row = document.createElement("tr");
     tbody.appendChild(row);
@@ -88,7 +92,7 @@ document.getElementById("submitbutton").addEventListener("click", function() {
             time: parseTime(tr.children[1].children[0].value, tr.children[1].children[2].value + "." + tr.children[1].children[4].value),
         });
     }
-    fs.writeFileSync(getAppDataPath() + "/splits.json", JSON.stringify(matrix));
+    fs.writeFileSync(userDataPath + "/splits.json", JSON.stringify(matrix));
     ipcRenderer.send("reboot");
 });
 
