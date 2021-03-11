@@ -6,8 +6,6 @@
     display: flex;
     flex-flow: column;
     user-select: none;
-    -webkit-app-region: drag;
-    cursor: move;
 }
 
 body {
@@ -16,8 +14,10 @@ body {
 
 #decobar {
     width: 100%;
-    height: 5px;
+    height: 10px;
     background-color: #002F63;
+    -webkit-app-region: drag;
+    cursor: move;
 }
 
 #time {
