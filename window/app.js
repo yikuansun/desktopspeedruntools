@@ -12,64 +12,62 @@ keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.plat
 
 ioHook.start();
 
-rightClickMenu = new Menu();
-settingsButton = new MenuItem({
-    label: 'Open Settings',
-    click: () => {
-        winsettings = {
-            height: 500,
-            width: 400,
-            resizable: false,
-            titleBarStyle: "hidden",
-            webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
+rightClickMenu = Menu.buildFromTemplate([
+    {
+        label: 'Open Settings',
+        click: () => {
+            winsettings = {
+                height: 500,
+                width: 400,
+                resizable: false,
+                titleBarStyle: "hidden",
+                webPreferences: {
+                    nodeIntegration: true,
+                    enableRemoteModule: true,
+                }
+            };
+            if (process.platform == "win32") {
+                winsettings.frame = false;
             }
-        };
-        if (process.platform == "win32") {
-            winsettings.frame = false;
-        }
-        else {
-            winsettings.titleBarStyle = "hidden";
-        }
-        
-        win = new BrowserWindow(winsettings);
-
-        win.loadFile("window/settings.html");
-    }
-});
-customSplitsButton = new MenuItem({
-    label: 'Edit Splits',
-    click: () => {
-        winsettings = {
-            height: 500,
-            width: 400,
-            resizable: false,
-            titleBarStyle: "hidden",
-            webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
+            else {
+                winsettings.titleBarStyle = "hidden";
             }
-        };
-        if (process.platform == "win32") {
-            winsettings.frame = false;
-        }
-        else {
-            winsettings.titleBarStyle = "hidden";
-        }
-        
-        win = new BrowserWindow(winsettings);
+            
+            win = new BrowserWindow(winsettings);
 
-        win.loadFile("window/splitsmanager/editsplits.html");
+            win.loadFile("window/settings.html");
+        }
+    },
+    {
+        label: 'Edit Splits',
+        click: () => {
+            winsettings = {
+                height: 500,
+                width: 400,
+                resizable: false,
+                titleBarStyle: "hidden",
+                webPreferences: {
+                    nodeIntegration: true,
+                    enableRemoteModule: true,
+                }
+            };
+            if (process.platform == "win32") {
+                winsettings.frame = false;
+            }
+            else {
+                winsettings.titleBarStyle = "hidden";
+            }
+            
+            win = new BrowserWindow(winsettings);
+    
+            win.loadFile("window/splitsmanager/editsplits.html");
+        }
+    },
+    {
+        label: 'Close Runtime',
+        click: () => { ipcRenderer.send("closeappcompletely"); }
     }
-});
-closeButton = new MenuItem({
-    label: 'Close Runtime',
-    click: () => { ipcRenderer.send("closeappcompletely"); }
-});
-rightClickMenu.append(settingsButton);
-rightClickMenu.append(customSplitsButton);
-rightClickMenu.append(closeButton);
+]);
 window.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     rightClickMenu.popup();
