@@ -1,7 +1,5 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const shell = require('electron').shell;
-const path = require('path');
-const fs = require('fs');
 
 ipcMain.on( "reboot", ( event ) => {
   app.relaunch();
@@ -21,7 +19,6 @@ function createWindow () {
     transparent: true,
     alwaysOnTop: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       enableRemoteModule: true,
     },
