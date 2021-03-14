@@ -1,12 +1,12 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const shell = require('electron').shell;
 
-ipcMain.on( "reboot", ( event ) => {
+ipcMain.on( 'reboot', ( event ) => {
   app.relaunch();
   app.exit();
 } );
 
-ipcMain.on( "closeappcompletely", ( event ) => {
+ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
 } );
 
@@ -24,7 +24,7 @@ function createWindow () {
     },
   });
   mainWindow.loadFile('window/index.html');
-  ipcMain.on( "softreboot", ( event ) => {
+  ipcMain.on( 'softreboot', ( event ) => {
     mainWindow.close();
     createWindow();
   } );
