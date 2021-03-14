@@ -25,7 +25,9 @@ function createWindow () {
   });
   mainWindow.loadFile('window/index.html');
   ipcMain.on( 'softreboot', ( event ) => {
-    mainWindow.close();
+    for (win of BrowserWindow.getAllWindows()) {
+      win.close();
+    }
     createWindow();
   } );
 }
