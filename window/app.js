@@ -82,7 +82,7 @@ catch(err) {
     try {
         fs.mkdirSync(userDataPath);
     } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(userDataPath + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5"}');
+    fs.writeFileSync(userDataPath + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5","autoStop":false}');
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
 
