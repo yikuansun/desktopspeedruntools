@@ -11,7 +11,7 @@ ipcMain.on( "closeappcompletely", ( event ) => {
 } );
 
 function createWindow () {
-  global.mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 250,
     height: 400,
     frame: false,
@@ -23,9 +23,9 @@ function createWindow () {
       enableRemoteModule: true,
     },
   });
-  global.mainWindow.loadFile('window/index.html');
+  mainWindow.loadFile('window/index.html');
   ipcMain.on( "softreboot", ( event ) => {
-    global.mainWindow.close();
+    mainWindow.close();
     createWindow();
   } );
 }
