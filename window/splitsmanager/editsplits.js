@@ -93,7 +93,7 @@ document.getElementById("submitbutton").addEventListener("click", function() {
         });
     }
     fs.writeFileSync(userDataPath + "/splits.json", JSON.stringify(matrix));
-    ipcRenderer.send("reboot");
+    ipcRenderer.send("softreboot");
 });
 
 document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";

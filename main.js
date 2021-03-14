@@ -24,6 +24,10 @@ function createWindow () {
     },
   });
   global.mainWindow.loadFile('window/index.html');
+  ipcMain.on( "softreboot", ( event ) => {
+    global.mainWindow.close();
+    createWindow();
+  } );
 }
 
 function setMainMenu() {
