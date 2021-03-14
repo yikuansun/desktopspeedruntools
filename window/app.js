@@ -197,6 +197,12 @@ ioHook.on("keydown", e => {
             }
             segment_on++;
         }
+        if (segment_on == document.getElementsByClassName("splittimes").length && Boolean(settings.autoStop)) {
+            try {
+                clearInterval(mainLoop);
+                AltToStartClock = true;
+            } catch(err) {  }
+        }
     }
 
     keymap[keyname] = true;

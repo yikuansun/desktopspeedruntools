@@ -41,6 +41,7 @@ splitKey = currentSettings.splitKey;
 hueRotate = currentSettings.hueRotate;
 globalFont = currentSettings.globalFont;
 countdownTime = currentSettings.countdownTime;
+autoStop = Boolean(currentSettings.autoStop);
 document.getElementById("alt").value = startKey;
 document.getElementById("shift").value = splitKey;
 document.getElementById("hueslider").value = hueRotate;
@@ -49,6 +50,7 @@ document.getElementById("fontselect").value = globalFont;
 document.getElementById("fontselect").style.fontFamily = globalFont;
 document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
 document.getElementById("countdown").value = countdownTime;
+document.getElementById("autostop").checked = autoStop;
 
 function save_options() {
     startKey = document.getElementById("alt").value;
@@ -56,12 +58,14 @@ function save_options() {
     hueRotate = document.getElementById("hueslider").value;
     globalFont = document.getElementById("fontselect").value;
     countdownTime = document.getElementById("countdown").value;
+    autoStop = document.getElementById("autostop").checked;
     fs.writeFileSync(userDataPath + "/settings.json", JSON.stringify({
         startKey: startKey,
         splitKey: splitKey,
         hueRotate: hueRotate,
         globalFont: globalFont,
-        countdownTime: countdownTime
+        countdownTime: countdownTime,
+        autoStop: autoStop
     }));
 
     ipcRenderer.send("reboot");
