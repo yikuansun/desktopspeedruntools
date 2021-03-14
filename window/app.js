@@ -82,7 +82,14 @@ catch(err) {
     try {
         fs.mkdirSync(userDataPath);
     } catch(err2) { console.log("nothing"); }
-    fs.writeFileSync(userDataPath + "/settings.json", '{"startKey":"Alt","splitKey":"Shift","hueRotate":"0","globalFont":"Trebuchet MS","countdownTime":"5","autoStop":false}');
+    fs.writeFileSync(userDataPath + "/settings.json", JSON.stringify({
+        "startKey": "Alt",
+        "splitKey": "Shift",
+        "hueRotate": "0",
+        "globalFont": "Trebuchet MS",
+        "countdownTime": "5",
+        "autoStop": false
+    }));
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
 
@@ -90,9 +97,21 @@ try {
     splitdata = JSON.parse(fs.readFileSync(userDataPath + "/splits.json", "utf8"));
 }
 catch(err) {
-    splitdata = '[{"name":"Level 1","time":60000},{"name":"Level 2","time":120000},{"name":"Level 3","time":180000}]';
-    fs.writeFileSync(userDataPath + "/splits.json", splitdata);
-    splitdata = JSON.parse(splitdata);
+    splitdata = [
+        {
+            "name": "Level 1",
+            "time": 60000
+        },
+        {
+            "name": "Level 2",
+            "time": 120000
+        },
+        {
+            "name": "Level 3",
+            "time": 180000
+        }
+    ];
+    fs.writeFileSync(userDataPath + "/splits.json", JSON.stringify(splitdata));
 }
 
 document.getElementById("content").style.filter = "hue-rotate(" + settings.hueRotate + "deg)";
