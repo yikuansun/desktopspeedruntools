@@ -131,21 +131,17 @@ splits = document.getElementById("splits");
 keylog = document.getElementById("keylog");
 
 function formatTime(realtime) {
-    var FixedPlaces = (num, places) => num.toLocaleString('en-US', {
-        minimumFractionDigits: places,      
-        maximumFractionDigits: places,
-    });
     var s = (realtime % 60000) / 1000;
     var m = Math.floor(realtime / 60000);
     if (m < 60) {
-        var s_display = (s < 10)?("0"+FixedPlaces(s, 2)):(FixedPlaces(s, 2));
+        var s_display = (s < 10)?("0"+s.toFixed(2)):(s.toFixed(2));
         return m.toString() + ":" + s_display;
     }
     else {
         var h = Math.floor(realtime / 3600000);
         m = m - 60 * h;
-        var m_display = (m < 10)?("0"+FixedPlaces(m, 0)):(FixedPlaces(m, 0));
-        var s_display = (s < 10)?("0"+FixedPlaces(s, 0)):(FixedPlaces(s, 0));
+        var m_display = (m < 10)?("0"+m.toFixed(0)):(m.toFixed(0));
+        var s_display = (s < 10)?("0"+s.toFixed(0)):(s.toFixed(0));
         return h.toString() + ":" + m_display + ":" + s_display;
     }
 }
