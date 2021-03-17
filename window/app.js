@@ -133,8 +133,17 @@ keylog = document.getElementById("keylog");
 function formatTime(realtime) {
     s = (realtime % 60000) / 1000;
     m = Math.floor(realtime / 60000);
-    s_display = (s < 10)?("0"+s.toFixed(2)):(s.toFixed(2));
-    return m.toString() + ":" + s_display;
+    if (m < 60) {
+        s_display = (s < 10)?("0"+s.toFixed(2)):(s.toFixed(2));
+        return m.toString() + ":" + s_display;
+    }
+    else {
+        h = Math.floor(realtime / 3600000);
+        m = m - 60 * h;
+        m_display = (m < 10)?("0"+m.toFixed(0)):(m.toFixed(0));
+        s_display = (s < 10)?("0"+s.toFixed(0)):(s.toFixed(0));
+        return h.toString() + ":" + m_display + ":" + s_display;
+    }
 }
 
 time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
@@ -209,7 +218,7 @@ ioHook.on("keydown", e => {
     else if (keyname == settings.splitKey) {
         splitText = document.getElementsByClassName("splittimes")[segment_on];
         if (splitText) {
-            offset = " (" + ((clock <= parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(2) + ")";
+            offset = " (" + ((clock <= parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(1) + ")";
             splitText.innerText = time.innerText + offset;
             if (segment_on > 1) {
                 smoothscroll.scrollTopAmnt(splits_outer_div, scrolllen);
