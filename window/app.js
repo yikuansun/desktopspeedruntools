@@ -164,15 +164,15 @@ function fillsplits() {
         row = document.createElement("tr");
         splitname = document.createElement("td");
         splitname.innerText = split.name;
-        splitname.style.width = "32.5%";
+        splitname.style.width = "40%";
         row.appendChild(splitname);
         goaltime = document.createElement("td");
         goaltime.innerText = formatTime(split.time);
-        goaltime.style.width = "22.5%";
+        goaltime.style.width = "20%";
         row.appendChild(goaltime);
         realtime = document.createElement("td");
         realtime.innerText = "";
-        realtime.style.width = "45%";
+        realtime.style.width = "40%";
         realtime.setAttribute("class", "splittimes");
         realtime.dataset.goal = split.time;
         row.appendChild(realtime);
