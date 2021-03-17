@@ -142,6 +142,7 @@ function formatTime(realtime) {
         m = m - 60 * h;
         var m_display = (m < 10)?("0"+m.toFixed(0)):(m.toFixed(0));
         var s_display = (s < 10)?("0"+s.toFixed(0)):(s.toFixed(0));
+        if (s_display == "60") s_display = "59";
         return h.toString() + ":" + m_display + ":" + s_display;
     }
 }
