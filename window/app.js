@@ -133,6 +133,7 @@ keylog = document.getElementById("keylog");
 function formatTime(realtime) {
     var s = (realtime % 60000) / 1000;
     var m = Math.floor(realtime / 60000);
+    if (m < 1) return s.toFixed(2);
     if (m < 60) {
         var s_display = (s < 10)?("0"+s.toFixed(2)):(s.toFixed(2));
         return m.toString() + ":" + s_display;
