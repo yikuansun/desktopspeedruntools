@@ -1,11 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const shell = require('electron').shell;
 
-ipcMain.on( 'reboot', ( event ) => {
-  app.relaunch();
-  app.exit();
-} );
-
 ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
 } );
