@@ -8,15 +8,15 @@ const userDataPath = (electron.app || electron.remote.app).getPath(
     'userData'
 );
 
-keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
+var keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
 ioHook.start();
 
-rightClickMenu = Menu.buildFromTemplate([
+var rightClickMenu = Menu.buildFromTemplate([
     {
         label: 'Open Settings',
         click: () => {
-            winsettings = {
+            var winsettings = {
                 height: 500,
                 width: 400,
                 resizable: false,
@@ -33,7 +33,7 @@ rightClickMenu = Menu.buildFromTemplate([
                 winsettings.titleBarStyle = "hidden";
             }
             
-            win = new BrowserWindow(winsettings);
+            var win = new BrowserWindow(winsettings);
 
             win.loadFile("window/settings.html");
         }
@@ -41,7 +41,7 @@ rightClickMenu = Menu.buildFromTemplate([
     {
         label: 'Edit Splits',
         click: () => {
-            winsettings = {
+            var winsettings = {
                 height: 500,
                 width: 400,
                 resizable: false,
@@ -58,7 +58,7 @@ rightClickMenu = Menu.buildFromTemplate([
                 winsettings.titleBarStyle = "hidden";
             }
             
-            win = new BrowserWindow(winsettings);
+            var win = new BrowserWindow(winsettings);
     
             win.loadFile("window/splitsmanager/editsplits.html");
         }
@@ -73,7 +73,7 @@ window.addEventListener('contextmenu', (e) => {
     rightClickMenu.popup();
 }, false);
 
-scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
+const scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
 
 try {
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
@@ -121,14 +121,14 @@ function now() {
     return ((new Date()).getTime());
 }
 
-AltToStartClock = true;
+var AltToStartClock = true;
 
-time = document.getElementById("time");
-clock = -(settings.countdownTime * 1000);
+var time = document.getElementById("time");
+var clock = -(settings.countdownTime * 1000);
 
-splits = document.getElementById("splits");
+var splits = document.getElementById("splits");
 
-keylog = document.getElementById("keylog");
+var keylog = document.getElementById("keylog");
 
 function formatTime(realtime) {
     var s = (realtime % 60000) / 1000;
@@ -161,16 +161,16 @@ updateClock = function() {
 var scrolllen, segment_on;
 function fillsplits() {
     for (split of splitdata) {
-        row = document.createElement("tr");
-        splitname = document.createElement("td");
+        var row = document.createElement("tr");
+        var splitname = document.createElement("td");
         splitname.innerText = split.name;
         splitname.style.width = "40%";
         row.appendChild(splitname);
-        goaltime = document.createElement("td");
+        var goaltime = document.createElement("td");
         goaltime.innerText = formatTime(split.time);
         goaltime.style.width = "20%";
         row.appendChild(goaltime);
-        realtime = document.createElement("td");
+        var realtime = document.createElement("td");
         realtime.innerText = "";
         realtime.style.width = "40%";
         realtime.setAttribute("class", "splittimes");
@@ -184,14 +184,14 @@ function fillsplits() {
 }
 fillsplits();
 
-keymap = {};
+var keymap = {};
 
 /*// key farming
 iohookkeycodes = [];
 jskeynames = [];*/
 
 function displayPressedKeys() {
-    array_to_disp = [];
+    var array_to_disp = [];
     for (keypressed in keymap) {
         if (keymap[keypressed]) {
             array_to_disp.push(keypressed);
@@ -201,7 +201,7 @@ function displayPressedKeys() {
 }
 
 ioHook.on("keydown", e => {
-    keyname = keycodeNames[e.keycode];
+    var keyname = keycodeNames[e.keycode];
     //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
         if (AltToStartClock) {
@@ -218,9 +218,9 @@ ioHook.on("keydown", e => {
         }
     }
     else if (keyname == settings.splitKey) {
-        splitText = document.getElementsByClassName("splittimes")[segment_on];
+        var splitText = document.getElementsByClassName("splittimes")[segment_on];
         if (splitText) {
-            offset = " (" + ((clock <= parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(1) + ")";
+            var offset = " (" + ((clock <= parseFloat(splitText.dataset.goal))?"-":"+") + (Math.abs(clock - parseFloat(splitText.dataset.goal)) / 1000).toFixed(1) + ")";
             splitText.innerText = time.innerText + offset;
             if (segment_on > 1) {
                 smoothscroll.scrollTopAmnt(splits_outer_div, scrolllen);
@@ -241,7 +241,7 @@ ioHook.on("keydown", e => {
 });
 
 ioHook.on("keyup", e => {
-    keyname = keycodeNames[e.keycode];
+    var keyname = keycodeNames[e.keycode];
     keymap[keyname] = false;
     
     displayPressedKeys();
