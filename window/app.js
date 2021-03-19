@@ -19,7 +19,6 @@ var rightClickMenu = Menu.buildFromTemplate([
             var winsettings = {
                 height: 500,
                 width: 400,
-                resizable: false,
                 titleBarStyle: "hidden",
                 webPreferences: {
                     nodeIntegration: true,
@@ -44,7 +43,6 @@ var rightClickMenu = Menu.buildFromTemplate([
             var winsettings = {
                 height: 500,
                 width: 400,
-                resizable: false,
                 titleBarStyle: "hidden",
                 webPreferences: {
                     nodeIntegration: true,
