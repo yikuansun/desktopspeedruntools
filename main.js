@@ -10,7 +10,7 @@ function createWindow () {
     width: 250,
     height: 400,
     frame: false,
-    resizable: false,
+    //resizable: false,
     transparent: true,
     alwaysOnTop: true,
     webPreferences: {
