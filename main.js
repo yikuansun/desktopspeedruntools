@@ -1,5 +1,4 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
-const shell = require('electron').shell;
+const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
 
 ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
