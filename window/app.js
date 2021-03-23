@@ -1,5 +1,5 @@
-const { BrowserWindow, Menu } = require('electron').remote;
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, remote } = require('electron');
+const { BrowserWindow, Menu } = remote;
 const fs = require('fs');
 const ioHook = require('iohook');
 const os = require('os');
