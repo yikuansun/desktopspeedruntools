@@ -1,10 +1,7 @@
 const fs = require('fs');
-const { ipcRenderer } = require('electron');
+const { app, ipcRenderer, remote } = require('electron');
 const customTitlebar = require('custom-electron-titlebar');
-const electron = require('electron');
-const userDataPath = (electron.app || electron.remote.app).getPath(
-    'userData'
-);
+const userDataPath = (app || remote.app).getPath("userData");
 
 new customTitlebar.Titlebar({
 	backgroundColor: customTitlebar.Color.fromHex('#002F63')

@@ -1,12 +1,9 @@
-const { ipcRenderer, remote } = require('electron');
+const { app, ipcRenderer, remote } = require('electron');
 const { BrowserWindow, Menu } = remote;
 const fs = require('fs');
 const ioHook = require('iohook');
 const os = require('os');
-const electron = require('electron');
-const userDataPath = (electron.app || electron.remote.app).getPath(
-    'userData'
-);
+const userDataPath = (app || remote.app).getPath("userData");
 
 var keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
