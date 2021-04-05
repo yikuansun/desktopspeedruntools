@@ -204,7 +204,6 @@ ioHook.on("keydown", e => {
             startTime = now();
             splits.innerHTML = "";
             fillsplits();
-            splits.scrollTop = 0;
             mainLoop = setInterval(updateClock, 10);
             AltToStartClock = false;
         }
