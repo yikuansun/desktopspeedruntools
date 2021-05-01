@@ -1,13 +1,21 @@
 const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
+const windowStateKeeper = require('electron-window-state');
 
 ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
 } );
 
 function createWindow () {
-  mainWindow = new BrowserWindow({
-    width: 250,
-    height: 400,
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 250,
+    defaultHeight: 400
+  });
+
+  var mainWindow = new BrowserWindow({
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
     frame: false,
     //resizable: false,
     transparent: true,
@@ -17,9 +25,10 @@ function createWindow () {
       enableRemoteModule: true,
     },
   });
+  mainWindowState.manage(mainWindow);
   mainWindow.loadFile('window/index.html');
   ipcMain.on( 'softreboot', ( event ) => {
-    for (win of BrowserWindow.getAllWindows()) {
+    for (var win of BrowserWindow.getAllWindows()) {
       win.close();
     }
     createWindow();

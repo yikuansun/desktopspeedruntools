@@ -1,8 +1,7 @@
 #content {
     width: 100vw;
     height: 100vh;
-    background-image: url(bg_translucent.png);
-    background-size: cover;
+    background-color: #141414;
     display: flex;
     flex-flow: column;
     user-select: none;
