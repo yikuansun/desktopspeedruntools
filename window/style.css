@@ -2,8 +2,8 @@
     width: 100vw;
     height: 100vh;
     background-color: var(--color-0);
-    background-image: url("bg_translucent.png");
-    background-size: cover;
+    /*background-image: url("bg_translucent.png");
+    background-size: cover;*/
     display: flex;
     flex-flow: column;
     user-select: none;
