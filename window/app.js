@@ -69,6 +69,9 @@ window.addEventListener('contextmenu', (e) => {
 }, false);
 
 const scheme = ["#141414", "#002F63", "#003D82", "#0C53A6", "#2B6ABC"];
+for (var i = 0; i < scheme.length; i++) {
+    document.documentElement.style.setProperty("--color-" + i.toString(), scheme[i]);
+}
 
 try {
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
