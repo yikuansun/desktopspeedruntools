@@ -28,10 +28,7 @@ function createWindow () {
   mainWindowState.manage(mainWindow);
   mainWindow.loadFile('window/index.html');
   ipcMain.on( 'softreboot', ( event ) => {
-    for (var win of BrowserWindow.getAllWindows()) {
-      win.close();
-    }
-    createWindow();
+    mainWindow.loadFile('window/index.html')
   } );
 }
 
