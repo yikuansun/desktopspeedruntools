@@ -11,7 +11,6 @@
 - [x] Customizable stopwatch countdown
 - [x] Customizable fonts, colors
 - [x] Draggable popup window
-- [x] Translucent popup window
 
 ## Usage
 Download the app. Open it. Close by right-clicking anywhere on the popup and pressing __Close Runtime__. The app may lag at first; check if it is ready by pressing a key and seeing if it appears after __Keys pressed__ (shown at the bottom of the popup). To move the popup, grab the icon in the corner and drag. To resize the popup, drag its edges. Start, stop, or restart the stopwatch using __Alt__; record splits by pressing __Shift__. Change information about the splits by right-clicking the popup and pressing __Edit Splits__. Edit the table and press __Save splits__ to save them. Edit your settings by right-clicking the popup and pressing __Open Settings__. Once settings are changed, press the __Save settings__ button.
