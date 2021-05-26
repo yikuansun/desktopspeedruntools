@@ -43,7 +43,7 @@ body {
     overflow: hidden;
     display: inline-block;
     padding: 5px;
-    font-size: 12px;
+    font-size: 15px;
     color: var(--color-3);
     box-sizing: border-box;
 }

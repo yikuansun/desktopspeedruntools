@@ -58,7 +58,7 @@ app.whenReady().then(() => {
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length == 0) createWindow();
   });
-  //setMainMenu();
+  setMainMenu();
 });
 
 app.allowRendererProcessReuse = false;

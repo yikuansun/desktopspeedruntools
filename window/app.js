@@ -162,18 +162,15 @@ function fillsplits() {
         var row = document.createElement("tr");
         var splitname = document.createElement("td");
         splitname.innerText = split.name;
-        splitname.style.width = "40%";
+        splitname.style.width = "50%";
         row.appendChild(splitname);
         var goaltime = document.createElement("td");
         goaltime.innerText = formatTime(split.time);
-        goaltime.style.width = "20%";
+        goaltime.style.width = "50%";
+        goaltime.style.textAlign = "right";
+        goaltime.setAttribute("class", "splittimes");
+        goaltime.dataset.goal = split.time;
         row.appendChild(goaltime);
-        var realtime = document.createElement("td");
-        realtime.innerText = "";
-        realtime.style.width = "40%";
-        realtime.setAttribute("class", "splittimes");
-        realtime.dataset.goal = split.time;
-        row.appendChild(realtime);
         splits.appendChild(row);
 
         scrolllen = row.getBoundingClientRect().height;
