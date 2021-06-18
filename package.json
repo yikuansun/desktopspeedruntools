@@ -1,5 +1,6 @@
 {
   "name": "runtime",
+  "productName": "Runtime Speedrun Tools",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
