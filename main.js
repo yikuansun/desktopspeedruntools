@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
+require('@electron/remote/main').initialize();
 
 ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
@@ -23,8 +24,10 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
+      contextIsolation: false,
     },
   });
+  require('@electron/remote/main').enable(mainWindow.webContents);
   mainWindowState.manage(mainWindow);
   mainWindow.loadFile('window/index.html');
   ipcMain.on( 'softreboot', ( event ) => {
@@ -55,7 +58,7 @@ app.whenReady().then(() => {
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length == 0) createWindow();
   });
-  setMainMenu();
+  //setMainMenu();
 });
 
 app.allowRendererProcessReuse = false;
