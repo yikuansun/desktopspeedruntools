@@ -7,13 +7,12 @@
     "build-darwin": "electron-packager . --icon icon128.ico --platform darwin"
   },
   "devDependencies": {
-    "electron": "^11.1.1",
+    "electron": "^19.0.5",
     "electron-packager": "^15.2.0"
   },
   "dependencies": {
-    "custom-electron-titlebar": "^3.2.6",
     "electron-window-state": "^5.0.3",
-    "iohook": "^0.7.2"
+    "iohook": "^0.9.3"
   },
   "iohook": {
     "targets": [
@@ -21,7 +20,8 @@
     ],
     "platforms": [
       "win32",
-      "darwin"
+      "darwin",
+      "linux"
     ],
     "arches": [
       "x64"
