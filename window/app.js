@@ -1,13 +1,13 @@
-const { app, ipcRenderer } = require('electron');
-const { BrowserWindow, Menu } = require("@electron/remote");
+const { ipcRenderer } = require('electron');
+const { BrowserWindow, Menu, app } = require("@electron/remote");
 const fs = require('fs');
-const ioHook = require('iohook');
+const { uIOhook, UiohookKey } = require("uiohook-napi");
 const os = require('os');
-const userDataPath = (app || remote.app).getPath("userData");
+const userDataPath = app.getPath("userData");
 
 var keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
-ioHook.start();
+uIOhook.start();
 
 var rightClickMenu = Menu.buildFromTemplate([
     {
@@ -195,8 +195,9 @@ function displayPressedKeys() {
     keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
 }
 
-ioHook.on("keydown", e => {
+uIOhook.on("keydown", e => {
     var keyname = keycodeNames[e.keycode];
+    alert(e.keycode)
     //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
         if (AltToStartClock) {
@@ -235,7 +236,7 @@ ioHook.on("keydown", e => {
     displayPressedKeys();
 });
 
-ioHook.on("keyup", e => {
+uIOhook.on("keyup", e => {
     var keyname = keycodeNames[e.keycode];
     keymap[keyname] = false;
     
