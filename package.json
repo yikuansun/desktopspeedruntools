@@ -1,18 +1,29 @@
 {
     "name": "runtime",
     "main": "main.js",
+    "version": "3.0.0",
     "scripts": {
         "start": "electron .",
-        "build-win32": "electron-packager . --icon icon128.ico --platform win32",
-        "build-darwin": "electron-packager . --icon icon128.ico --platform darwin"
+        "build-win32": "electron-builder --windows",
+        "build-darwin": "electron-builder --mac",
+        "build-linux": "electron-builder --linux"
     },
     "devDependencies": {
         "electron": "^19.0.5",
-        "electron-packager": "^15.2.0"
+        "electron-builder": "^23.6.0"
     },
     "dependencies": {
         "@electron/remote": "^2.0.8",
         "electron-window-state": "^5.0.3",
         "uiohook-napi": "^1.5.0"
+    },
+    "build": {
+        "appId": "com.electron.runtimesr",
+        "directories": {
+            "buildResources": "bresources"
+        },
+        "mac": {
+            "target": "zip"
+        }
     }
 }
