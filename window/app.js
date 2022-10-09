@@ -197,7 +197,6 @@ function displayPressedKeys() {
 
 uIOhook.on("keydown", e => {
     var keyname = keycodeNames[e.keycode];
-    alert(e.keycode)
     //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
         if (AltToStartClock) {
