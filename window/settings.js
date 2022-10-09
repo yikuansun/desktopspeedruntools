@@ -20,7 +20,7 @@ availFonts = ["Trebuchet MS", "Arial", "Courier", "serif", "BlinkMacSystemFont"]
 for (font of availFonts) {
     optionTag = document.createElement("option");
     optionTag.innerHTML = font;
-    optionTag.style.fontFamily = "font";
+    optionTag.style.fontFamily = font;
     document.getElementById("fontselect").appendChild(optionTag);
 }
 document.getElementById("fontselect").style.fontFamily = document.getElementById("fontselect").value;
