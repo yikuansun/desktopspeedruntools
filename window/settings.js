@@ -1,11 +1,7 @@
 const fs = require('fs');
-const { app, ipcRenderer, remote } = require('electron');
-const customTitlebar = require('custom-electron-titlebar');
-const userDataPath = (app || remote.app).getPath("userData");
-
-new customTitlebar.Titlebar({
-	backgroundColor: customTitlebar.Color.fromHex('#141414')
-});
+const { ipcRenderer } = require('electron');
+const { app } = require("@electron/remote");
+const userDataPath = app.getPath("userData");
 
 alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
 numberkeys = "1234567890".split("");
@@ -20,11 +16,11 @@ for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
     document.getElementById("shift").appendChild(optionTag);
 }
 
-availFonts = ["Trebuchet MS", "Arial", "Courier", "serif", "BlinkMacSystemFont"];
+availFonts = ["Trebuchet MS", "Arial", "Courier", "serif", "system-ui"];
 for (font of availFonts) {
     optionTag = document.createElement("option");
     optionTag.innerHTML = font;
-    optionTag.style.fontFamily = "font";
+    optionTag.style.fontFamily = font;
     document.getElementById("fontselect").appendChild(optionTag);
 }
 document.getElementById("fontselect").style.fontFamily = document.getElementById("fontselect").value;
@@ -46,6 +42,7 @@ document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.to
 document.getElementById("fontselect").value = globalFont;
 document.getElementById("fontselect").style.fontFamily = globalFont;
 document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+document.body.style.userSelect = "none";
 document.getElementById("countdown").value = countdownTime;
 document.getElementById("autostop").checked = autoStop;
 

@@ -1,61 +1,25 @@
-const { app, ipcRenderer, remote } = require('electron');
-const { BrowserWindow, Menu } = remote;
+const { ipcRenderer } = require('electron');
+const { BrowserWindow, Menu, app } = require("@electron/remote");
 const fs = require('fs');
-const ioHook = require('iohook');
+const { uIOhook, UiohookKey } = require("uiohook-napi");
 const os = require('os');
-const userDataPath = (app || remote.app).getPath("userData");
+const userDataPath = app.getPath("userData");
 
 var keycodeNames = JSON.parse(fs.readFileSync(__dirname + "/keycodenames/" + os.platform() + ".json", "utf-8"));
 
-ioHook.start();
+uIOhook.start();
 
 var rightClickMenu = Menu.buildFromTemplate([
     {
         label: 'Open Settings',
         click: () => {
-            var winsettings = {
-                height: 500,
-                width: 400,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            };
-            if (process.platform == "win32") {
-                winsettings.frame = false;
-            }
-            else {
-                winsettings.titleBarStyle = "hidden";
-            }
-            
-            var win = new BrowserWindow(winsettings);
-
-            win.loadFile("window/settings.html");
+            ipcRenderer.send("openSettings");
         }
     },
     {
         label: 'Edit Splits',
         click: () => {
-            var winsettings = {
-                height: 500,
-                width: 400,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            };
-            if (process.platform == "win32") {
-                winsettings.frame = false;
-            }
-            else {
-                winsettings.titleBarStyle = "hidden";
-            }
-            
-            var win = new BrowserWindow(winsettings);
-    
-            win.loadFile("window/splitsmanager/editsplits.html");
+            ipcRenderer.send("openSplitEditor");
         }
     },
     {
@@ -195,7 +159,7 @@ function displayPressedKeys() {
     keylog.innerText = "Keys pressed: " + array_to_disp.sort().join("; ");
 }
 
-ioHook.on("keydown", e => {
+uIOhook.on("keydown", e => {
     var keyname = keycodeNames[e.keycode];
     //iohookkeycodes.push(e.keycode);
     if (keyname == settings.startKey) {
@@ -235,7 +199,7 @@ ioHook.on("keydown", e => {
     displayPressedKeys();
 });
 
-ioHook.on("keyup", e => {
+uIOhook.on("keyup", e => {
     var keyname = keycodeNames[e.keycode];
     keymap[keyname] = false;
     
