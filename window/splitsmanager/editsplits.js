@@ -90,3 +90,4 @@ document.getElementById("submitbutton").addEventListener("click", function() {
 });
 
 document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+document.body.style.userSelect = "none";

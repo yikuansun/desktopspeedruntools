@@ -42,6 +42,7 @@ document.getElementById("colordisp").style.filter = "hue-rotate(" + hueRotate.to
 document.getElementById("fontselect").value = globalFont;
 document.getElementById("fontselect").style.fontFamily = globalFont;
 document.body.style.fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif";
+document.body.style.userSelect = "none";
 document.getElementById("countdown").value = countdownTime;
 document.getElementById("autostop").checked = autoStop;
 
