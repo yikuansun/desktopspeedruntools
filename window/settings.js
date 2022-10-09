@@ -16,7 +16,7 @@ for (key of [].concat.apply([], [alphabetkeys, numberkeys, fkeys])) {
     document.getElementById("shift").appendChild(optionTag);
 }
 
-availFonts = ["Trebuchet MS", "Arial", "Courier", "serif", "BlinkMacSystemFont"];
+availFonts = ["Trebuchet MS", "Arial", "Courier", "serif", "system-ui"];
 for (font of availFonts) {
     optionTag = document.createElement("option");
     optionTag.innerHTML = font;
