@@ -6,6 +6,40 @@ ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
 } );
 
+ipcMain.on("openSettings", function(e) {
+  var win = new BrowserWindow({
+    height: 500,
+    width: 400,
+    webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true,
+        contextIsolation: false,
+    }
+  });
+
+  win.loadFile("window/settings.html");
+  win.setMenuBarVisibility(false);
+
+  require("@electron/remote/main").enable(win.webContents);
+});
+
+ipcMain.on("openSplitEditor", function(e) {
+  var win = new BrowserWindow({
+    height: 500,
+    width: 400,
+    webPreferences: {
+        nodeIntegration: true,
+        enableRemoteModule: true,
+        contextIsolation: false,
+    }
+  });
+
+  win.loadFile("window/splitsmanager/editsplits.html");
+  win.setMenuBarVisibility(false);
+
+  require("@electron/remote/main").enable(win.webContents);
+});
+
 function createWindow () {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 250,

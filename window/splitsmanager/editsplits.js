@@ -1,11 +1,7 @@
 const fs = require('fs');
-const { app, ipcRenderer, remote } = require('electron');
-const customTitlebar = require('custom-electron-titlebar');
+const { ipcRenderer } = require('electron');
+const { app } = require("@electron/remote");
 const userDataPath = (app || remote.app).getPath("userData");
-
-new customTitlebar.Titlebar({
-	backgroundColor: customTitlebar.Color.fromHex('#002F63')
-});
 
 function formatTime(realtime) {
     s = (realtime % 60000) / 1000;

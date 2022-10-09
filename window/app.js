@@ -13,49 +13,13 @@ var rightClickMenu = Menu.buildFromTemplate([
     {
         label: 'Open Settings',
         click: () => {
-            var winsettings = {
-                height: 500,
-                width: 400,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            };
-            if (process.platform == "win32") {
-                winsettings.frame = false;
-            }
-            else {
-                winsettings.titleBarStyle = "hidden";
-            }
-            
-            var win = new BrowserWindow(winsettings);
-
-            win.loadFile("window/settings.html");
+            ipcRenderer.send("openSettings");
         }
     },
     {
         label: 'Edit Splits',
         click: () => {
-            var winsettings = {
-                height: 500,
-                width: 400,
-                titleBarStyle: "hidden",
-                webPreferences: {
-                    nodeIntegration: true,
-                    enableRemoteModule: true,
-                }
-            };
-            if (process.platform == "win32") {
-                winsettings.frame = false;
-            }
-            else {
-                winsettings.titleBarStyle = "hidden";
-            }
-            
-            var win = new BrowserWindow(winsettings);
-    
-            win.loadFile("window/splitsmanager/editsplits.html");
+            ipcRenderer.send("openSplitEditor");
         }
     },
     {

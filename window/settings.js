@@ -1,11 +1,7 @@
 const fs = require('fs');
-const { app, ipcRenderer, remote } = require('electron');
-const customTitlebar = require('custom-electron-titlebar');
-const userDataPath = (app || remote.app).getPath("userData");
-
-new customTitlebar.Titlebar({
-	backgroundColor: customTitlebar.Color.fromHex('#141414')
-});
+const { ipcRenderer } = require('electron');
+const { app } = require("@electron/remote");
+const userDataPath = app.getPath("userData");
 
 alphabetkeys = "abcdefghijklmnopqrstuvwxyz".split("");
 numberkeys = "1234567890".split("");
