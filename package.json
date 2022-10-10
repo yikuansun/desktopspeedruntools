@@ -6,7 +6,8 @@
         "start": "electron .",
         "build-win32": "electron-builder --windows",
         "build-darwin": "electron-builder --mac",
-        "build-linux": "electron-builder --linux"
+        "build-linux": "electron-builder --linux",
+        "build-all": "electron-builder --mac --linux --windows"
     },
     "devDependencies": {
         "electron": "^19.0.5",
