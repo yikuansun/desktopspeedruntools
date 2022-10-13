@@ -168,7 +168,7 @@ uIOhook.on("keydown", e => {
             startTime = now();
             splits.innerHTML = "";
             fillsplits();
-            mainLoop = setInterval(updateClock, 10);
+            mainLoop = setInterval(updateClock, 1000 / 60);
             AltToStartClock = false;
         }
         else {
