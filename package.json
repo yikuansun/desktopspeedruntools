@@ -2,6 +2,7 @@
     "name": "runtime",
     "main": "main.js",
     "version": "3.0.0",
+    "productName": "Runtime Speedrun Tools",
     "scripts": {
         "start": "electron .",
         "build-win32": "electron-builder --windows",
