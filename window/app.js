@@ -38,13 +38,10 @@ for (var i = 0; i < scheme.length; i++) {
 }
 
 var settings;
-try {
+if (fs.existsSync(userDataPath + "/settings.json")) {
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
-catch(err) {
-    try {
-        fs.mkdirSync(userDataPath);
-    } catch(err2) { console.log("nothing"); }
+else {
     fs.writeFileSync(userDataPath + "/settings.json", JSON.stringify({
         startKey: "Alt",
         splitKey: "Shift",
@@ -57,10 +54,10 @@ catch(err) {
 }
 
 var splitdata;
-try {
+if (fs.existsSync(userDataPath + "/splits.json")) {
     splitdata = JSON.parse(fs.readFileSync(userDataPath + "/splits.json", "utf8"));
 }
-catch(err) {
+else {
     splitdata = [
         {
             name: "Level 1",
