@@ -37,6 +37,7 @@ for (var i = 0; i < scheme.length; i++) {
     document.documentElement.style.setProperty("--color-" + i.toString(), scheme[i]);
 }
 
+var settings;
 try {
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
@@ -55,6 +56,7 @@ catch(err) {
     settings = JSON.parse(fs.readFileSync(userDataPath + "/settings.json", "utf8"));
 }
 
+var splitdata;
 try {
     splitdata = JSON.parse(fs.readFileSync(userDataPath + "/splits.json", "utf8"));
 }
@@ -110,6 +112,7 @@ function formatTime(realtime) {
     }
 }
 
+var startTime;
 time.innerHTML = ((clock >= 0)?"":"-") + formatTime(Math.abs(clock));
 updateClock = function() {
     if (clock < 0) {
