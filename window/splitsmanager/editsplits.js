@@ -41,7 +41,7 @@ addTableRow = function(split) {
     secondinput = document.createElement("input");
     secondinput.type = "number";
     secondinput.style.width = "25%";
-    secondinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[0];
+    secondinput.value = (formatted_time.split(":")[1]).split(".")[0];
     secondinput.style.textAlign = "right";
     secondinput.max = "59";
     secondinput.min = "0";
@@ -50,7 +50,7 @@ addTableRow = function(split) {
     hundredthinput = document.createElement("input");
     hundredthinput.type = "number";
     hundredthinput.style.width = "25%";
-    hundredthinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[1];
+    hundredthinput.value = (formatted_time.split(":")[1]).split(".")[1];
     hundredthinput.max = "99";
     hundredthinput.min = "0";
     celltwo.appendChild(minuteinput);
