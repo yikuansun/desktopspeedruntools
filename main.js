@@ -60,6 +60,7 @@ function createWindow () {
       enableRemoteModule: true,
       contextIsolation: false,
     },
+    icon: "window/icon.png",
   });
   require('@electron/remote/main').enable(mainWindow.webContents);
   mainWindowState.manage(mainWindow);
