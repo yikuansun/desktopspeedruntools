@@ -1,0 +1,22 @@
+body {
+    background-color: #222222;
+    color: aliceblue;
+}
+
+input, button {
+    background-color: #111111;
+    color: aliceblue;
+    border: 0;
+    padding: 3px;
+    border-radius: 3px;
+    outline: none!important;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 6px 12px;
+}
+
+button:hover {
+    opacity: 0.69;
+}
