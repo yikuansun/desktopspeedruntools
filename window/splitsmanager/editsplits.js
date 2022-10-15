@@ -40,7 +40,7 @@ addTableRow = function(split) {
     decospan.innerText = ":";
     secondinput = document.createElement("input");
     secondinput.type = "number";
-    secondinput.style.width = "20%";
+    secondinput.style.width = "25%";
     secondinput.value = parseFloat(formatted_time.split(":")[1]).toFixed(2).split(".")[0];
     secondinput.style.textAlign = "right";
     secondinput.max = "59";
@@ -64,6 +64,8 @@ addTableRow = function(split) {
     deletebutton = document.createElement("button");
     deletebutton.innerText = "-";
     cellthree.appendChild(deletebutton);
+    cellthree.style.width = "25px";
+    cellthree.style.textAlign = "center";
     row.appendChild(cellthree);
     deletebutton.addEventListener("click", function() {
         this.parentElement.parentElement.remove();
