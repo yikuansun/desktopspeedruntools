@@ -62,7 +62,7 @@ addTableRow = function(split) {
 
     cellthree = document.createElement("td");
     deletebutton = document.createElement("button");
-    deletebutton.innerText = "Delete row";
+    deletebutton.innerText = "-";
     cellthree.appendChild(deletebutton);
     row.appendChild(cellthree);
     deletebutton.addEventListener("click", function() {
