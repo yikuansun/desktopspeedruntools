@@ -70,30 +70,11 @@ function createWindow () {
   } );
 }
 
-function setMainMenu() {
-  const template = [
-    {
-      label: 'Help',
-      submenu: [
-        {
-          label: 'Read the Docs',
-          accelerator: 'Shift+CmdOrCtrl+H',
-          click() {
-            shell.openExternal('https://github.com/yikuansun/desktopspeedruntools#usage');
-          }
-        }
-      ]
-    }
-  ];
-  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-}
-
 app.whenReady().then(() => {
   createWindow();
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length == 0) createWindow();
   });
-  //setMainMenu();
 });
 
 app.allowRendererProcessReuse = false;
