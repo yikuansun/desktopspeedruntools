@@ -55,6 +55,7 @@ function createWindow () {
     //resizable: false,
     transparent: true,
     alwaysOnTop: true,
+    fullscreenable: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
