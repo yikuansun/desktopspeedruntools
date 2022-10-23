@@ -6,6 +6,11 @@ ipcMain.on( 'closeappcompletely', ( event ) => {
   app.quit();
 } );
 
+ipcMain.on("hardreboot", function(e) {
+  app.relaunch();
+  app.quit();
+});
+
 ipcMain.on("openSettings", function(e) {
   var win = new BrowserWindow({
     height: 500,

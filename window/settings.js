@@ -62,7 +62,7 @@ function save_options() {
         autoStop: autoStop
     }));
 
-    ipcRenderer.send("softreboot");
+    ipcRenderer.send("hardreboot");
 
     return false;
 }
