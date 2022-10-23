@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #222222;
+}
+
+hr {
+    opacity: 0.1;
+}
+
+button {
+    background-color: #111111;
+    border: 0;
+    padding: 6px 12px;
+    border-radius: 3px;
+    color: aliceblue;
+    outline: none!important;
+}
+
+select {
+    background-color: #111111;
+    border: 0;
+    padding: 3px;
+    border-radius: 3px;
+    color: aliceblue;
+    outline: none!important;
+}
+
+button:hover {
+    opacity: 0.69;
+}

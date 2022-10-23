@@ -4,21 +4,22 @@
         <link rel="icon" href="../icon128.ico" />
         <title>Settings</title>
         <link rel="stylesheet" href="fontManager.css" />
+        <link rel="stylesheet" href="settings.css" />
     </head>
-    <body style="margin: 0; width: 100vw; height: 100vh; background-color: #222222;">
+    <body>
         <table style="width: 100%; height: 100%; color: aliceblue"><tr><td>
             <center>
                 <form>
                     <b>Clock</b>
                     <br />Countdown: <input type="number" id="countdown" min="0" step="0.01" style="width: 6ch; background-color: #111111; border: 0; padding: 3px; border-radius: 3px; color: aliceblue; outline: none!important;" />s
                     <br /><input type="checkbox" id="autostop" /><label for="autostop">Stop clock at last split</label>
-                    <br /><br /><hr style="opacity: 0.1;" /><br /><b>Hotkeys</b>
-                    <br />Key for start/stop/restart: <select id="alt" style="background-color: #111111; border: 0; padding: 3px; border-radius: 3px; color: aliceblue; outline: none!important;"><option>Alt</option><option>Shift</option><option>Enter</option></select>
-                    <br />Key for record split: <select id="shift" style="background-color: #111111; border: 0; padding: 3px; border-radius: 3px; color: aliceblue; outline: none!important;"><option>Alt</option><option>Shift</option><option>Enter</option></select>
-                    <br /><br /><hr style="opacity: 0.1;" /><br /><b>Style</b>
+                    <br /><br /><hr /><br /><b>Hotkeys</b>
+                    <br />Key for start/stop/restart: <select id="alt"><option>Alt</option><option>Shift</option><option>Enter</option></select>
+                    <br />Key for record split: <select id="shift"><option>Alt</option><option>Shift</option><option>Enter</option></select>
+                    <br /><br /><hr /><br /><b>Style</b>
                     <br />Color: <span id="colordisp" style="background-color: #002F63; white-space: pre;">        </span> <input id="hueslider" type="range" min="0" max="360" value="0">
-                    <br />Font: <select id="fontselect" style="background-color: #111111; border: 0; padding: 3px; border-radius: 3px; color: aliceblue; outline: none!important;"></select>
-                    <br /><br /><hr style="opacity: 0.1;" /><br /><button style="background-color: #111111; border: 0; padding: 6px 12px; border-radius: 3px; color: aliceblue; outline: none!important;">Save settings</button>
+                    <br />Font: <select id="fontselect"></select>
+                    <br /><br /><hr /><br /><button>Save settings</button>
                 </form>
             </center>
         </td></tr></table>
