@@ -16,9 +16,9 @@ ipcMain.on("openSettings", function(e) {
         height: 500,
         width: 400,
         webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
-                contextIsolation: false,
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
         }
     });
 
@@ -33,9 +33,9 @@ ipcMain.on("openSplitEditor", function(e) {
         height: 500,
         width: 400,
         webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
-                contextIsolation: false,
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
         }
     });
 
